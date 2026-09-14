@@ -147,7 +147,7 @@ export default function App() {
 
   const unlockedAchievementsCount = achievements.filter((a) => a.unlocked).length;
 
-  // Theme wrapper styling
+  // Theme wrapper styling - Variation 3 architectural linen
   const getThemeClass = () => {
     if (preferences.batterySaver) return 'bg-black text-white';
     switch (preferences.theme) {
@@ -156,12 +156,12 @@ export default function App() {
       case 'neon':
         return 'bg-slate-950 text-cyan-50';
       case 'forest':
-        return 'bg-stone-950 text-stone-100';
+        return 'bg-[#f4f6f0] text-stone-900';
       case 'sunset':
-        return 'bg-slate-950 text-amber-50';
+        return 'bg-[#faf6f0] text-stone-900';
       case 'stealth':
       default:
-        return 'bg-slate-950 text-slate-100';
+        return 'bg-[#f8f7f4] text-[#1a1a1a]';
     }
   };
 
@@ -198,44 +198,44 @@ export default function App() {
               activeChallenge={activeChallenge}
             />
 
-            {/* Quick Link to 3D Bike and Maintenance */}
+            {/* Quick Link Cards - Variation 3 Aesthetic */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div
                 onClick={() => setActiveTab('bike3d')}
-                className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/60 transition-all cursor-pointer group flex items-center justify-between"
+                className="p-6 rounded-3xl bg-white border border-[#1a1a1a]/10 hover:border-[#2c52a1]/40 shadow-xs hover:shadow-md transition-all cursor-pointer group flex items-center justify-between"
               >
                 <div>
-                  <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider block mb-0.5">
-                    Inspeção Digital 3D
+                  <span className="meta text-[#2c52a1] block mb-1 font-bold">
+                    OFICINA 3D • DIAGNÓSTICO
                   </span>
-                  <h4 className="font-bold text-slate-100 text-base group-hover:text-emerald-400 transition-colors">
+                  <h4 className="font-serif-display text-xl font-bold text-[#1a1a1a] group-hover:text-[#2c52a1] transition-colors">
                     Examinar Componentes em 3D
                   </h4>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Giro livre, raio-X e diagnóstico em tempo real das peças da sua bike.
+                  <p className="text-xs text-[#1a1a1a]/60 mt-1 max-w-md">
+                    Giro livre 360°, modo raio-X e telemetria de desgaste de transmissão, freios e pneus.
                   </p>
                 </div>
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                <div className="w-11 h-11 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-[#2c52a1] flex items-center justify-center font-bold text-lg group-hover:bg-[#2c52a1] group-hover:text-white transition-all shrink-0 ml-4">
                   →
                 </div>
               </div>
 
               <div
                 onClick={() => setActiveTab('oficinas')}
-                className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/60 transition-all cursor-pointer group flex items-center justify-between"
+                className="p-6 rounded-3xl bg-white border border-[#1a1a1a]/10 hover:border-[#2c52a1]/40 shadow-xs hover:shadow-md transition-all cursor-pointer group flex items-center justify-between"
               >
                 <div>
-                  <span className="text-[10px] text-cyan-400 font-bold uppercase tracking-wider block mb-0.5">
-                    Apoio & Emergência
+                  <span className="meta text-[#2c52a1] block mb-1 font-bold">
+                    SUPORTE & EMERGÊNCIA
                   </span>
-                  <h4 className="font-bold text-slate-100 text-base group-hover:text-cyan-400 transition-colors">
+                  <h4 className="font-serif-display text-xl font-bold text-[#1a1a1a] group-hover:text-[#2c52a1] transition-colors">
                     Oficinas & Points de Apoio
                   </h4>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Encontre bombas de ar 24h, água potável e mecânicos credenciados por perto.
+                  <p className="text-xs text-[#1a1a1a]/60 mt-1 max-w-md">
+                    Localize bombas de alta pressão 24h, água potável, chaves allen e mecânicos credenciados.
                   </p>
                 </div>
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                <div className="w-11 h-11 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-[#2c52a1] flex items-center justify-center font-bold text-lg group-hover:bg-[#2c52a1] group-hover:text-white transition-all shrink-0 ml-4">
                   →
                 </div>
               </div>
@@ -268,18 +268,18 @@ export default function App() {
               userWeightKg={preferences.userWeightKg}
             />
             {/* Quick 3D Preview Anchor */}
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between">
+            <div className="bg-white border border-[#1a1a1a]/10 rounded-3xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
               <div>
-                <h4 className="font-bold text-slate-100 text-sm sm:text-base">
+                <h4 className="font-serif-display text-xl font-bold text-[#1a1a1a]">
                   Deseja visualizar esses componentes na bicicleta 3D?
                 </h4>
-                <p className="text-xs text-slate-400">
-                  Gire o modelo tridimensional e inspecione o quadro, transmissão e garfo.
+                <p className="text-xs text-[#1a1a1a]/60 mt-1">
+                  Gire o modelo tridimensional e inspecione a geometria do quadro, corrente e grupo de marchas.
                 </p>
               </div>
               <button
                 onClick={() => setActiveTab('bike3d')}
-                className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shrink-0 transition-colors"
+                className="px-5 py-2.5 rounded-full bg-[#2c52a1] hover:bg-[#234285] text-white font-mono-numbers uppercase text-xs font-bold shrink-0 transition-colors cursor-pointer"
               >
                 Abrir Visualizador 3D
               </button>
@@ -315,16 +315,22 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p>© 2026 CicloTrack Pro — Rastreamento GPS, Mapas Offline, Sensores BLE e Oficina 3D</p>
-          <div className="flex items-center gap-4 text-slate-400">
-            <span>Strava Sync: Ativo</span>
-            <span>•</span>
-            <span>Garmin Connect: Conectado</span>
-            <span>•</span>
-            <span>GPS: 10Hz Lock</span>
+      {/* Footer - Variation 3 Space Mono & Editorial Note */}
+      <footer className="border-t border-[#1a1a1a]/10 bg-[#f8f7f4] py-8 text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="meta text-[#1a1a1a]/60">
+            © 2026 CICLOTRACK SOFTWARE • GPS DE ALTA PRECISÃO • OFICINA 3D
+          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="meta px-2.5 py-1 rounded-full bg-white border border-[#1a1a1a]/10 text-[#1a1a1a]/70">
+              STRAVA SYNC: ATIVO
+            </span>
+            <span className="meta px-2.5 py-1 rounded-full bg-white border border-[#1a1a1a]/10 text-[#1a1a1a]/70">
+              GARMIN CONNECT: CONECTADO
+            </span>
+            <span className="meta px-2.5 py-1 rounded-full bg-white border border-[#1a1a1a]/10 text-[#2c52a1] font-bold">
+              GPS LOCK: 10HZ
+            </span>
           </div>
         </div>
       </footer>

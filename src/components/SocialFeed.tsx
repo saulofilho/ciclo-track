@@ -147,42 +147,42 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
 
   return (
     <div id="social-community-section" className="space-y-6">
-      {/* Top Nav Sub-Tabs */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900 border border-slate-800 p-2 rounded-2xl shadow-lg">
-        <div className="flex items-center gap-1 sm:gap-2">
+      {/* Top Nav Sub-Tabs - Variation 3 Space Mono Pills */}
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-white border border-[#1a1a1a]/10 p-2 sm:p-2.5 rounded-full shadow-xs">
+        <div className="flex flex-wrap items-center gap-1.5">
           <button
             id="subtab-feed"
             onClick={() => setActiveSubTab('feed')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all ${
+            className={`px-4 py-2 rounded-full text-xs font-mono-numbers uppercase font-bold flex items-center gap-2 transition-all cursor-pointer ${
               activeSubTab === 'feed'
-                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#2c52a1] text-white shadow-xs'
+                : 'text-[#1a1a1a]/60 hover:text-[#1a1a1a]'
             }`}
           >
             <Camera className="w-4 h-4" />
-            Feed com Fotos Geo
+            Feed de Fotos
           </button>
 
           <button
             id="subtab-desafios"
             onClick={() => setActiveSubTab('desafios')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all ${
+            className={`px-4 py-2 rounded-full text-xs font-mono-numbers uppercase font-bold flex items-center gap-2 transition-all cursor-pointer ${
               activeSubTab === 'desafios'
-                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#2c52a1] text-white shadow-xs'
+                : 'text-[#1a1a1a]/60 hover:text-[#1a1a1a]'
             }`}
           >
             <Swords className="w-4 h-4" />
-            Desafios em Tempo Real
+            Duelos ao Vivo
           </button>
 
           <button
             id="subtab-ranking"
             onClick={() => setActiveSubTab('ranking')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all ${
+            className={`px-4 py-2 rounded-full text-xs font-mono-numbers uppercase font-bold flex items-center gap-2 transition-all cursor-pointer ${
               activeSubTab === 'ranking'
-                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#2c52a1] text-white shadow-xs'
+                : 'text-[#1a1a1a]/60 hover:text-[#1a1a1a]'
             }`}
           >
             <Trophy className="w-4 h-4" />
@@ -192,10 +192,10 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
           <button
             id="subtab-conquistas"
             onClick={() => setActiveSubTab('conquistas')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all ${
+            className={`px-4 py-2 rounded-full text-xs font-mono-numbers uppercase font-bold flex items-center gap-2 transition-all cursor-pointer ${
               activeSubTab === 'conquistas'
-                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#2c52a1] text-white shadow-xs'
+                : 'text-[#1a1a1a]/60 hover:text-[#1a1a1a]'
             }`}
           >
             <Award className="w-4 h-4" />
@@ -207,7 +207,7 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
           <button
             id="btn-new-social-post"
             onClick={() => setShowNewPostModal(true)}
-            className="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition-colors shadow-md"
+            className="px-4 py-2 rounded-full bg-[#2c52a1] hover:bg-[#234285] text-white font-mono-numbers uppercase text-xs font-bold flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
           >
             <PlusCircle className="w-4 h-4" />
             Publicar Pedal
@@ -221,26 +221,26 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
           {localPosts.map((post) => (
             <div
               key={post.id}
-              className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl"
+              className="bg-white border border-[#1a1a1a]/10 rounded-3xl overflow-hidden shadow-xs"
             >
               {/* Post Header */}
-              <div className="p-4 sm:p-5 flex items-center justify-between border-b border-slate-800/80">
-                <div className="flex items-center gap-3">
+              <div className="p-5 sm:p-6 flex items-center justify-between border-b border-[#1a1a1a]/10">
+                <div className="flex items-center gap-3.5">
                   <img
                     src={post.authorAvatar}
                     alt={post.authorName}
                     referrerPolicy="no-referrer"
-                    className="w-11 h-11 rounded-full object-cover border-2 border-emerald-500/40"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-[#2c52a1]/30"
                   />
                   <div>
-                    <h4 className="font-bold text-slate-100 text-sm">{post.authorName}</h4>
-                    <p className="text-[11px] text-slate-400">{post.authorTitle}</p>
-                    <span className="text-[10px] text-slate-500">{post.timeAgo}</span>
+                    <h4 className="font-serif-display text-lg font-bold text-[#1a1a1a]">{post.authorName}</h4>
+                    <p className="text-xs text-[#1a1a1a]/60">{post.authorTitle}</p>
+                    <span className="meta text-[10px] text-[#1a1a1a]/40">{post.timeAgo}</span>
                   </div>
                 </div>
 
                 {/* Geolocated Location Pill */}
-                <div className="flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-800/60 max-w-[200px] truncate">
+                <div className="flex items-center gap-1.5 meta text-[11px] text-[#2c52a1] bg-[#f8f7f4] px-3.5 py-1.5 rounded-full border border-[#1a1a1a]/10 max-w-[220px] truncate">
                   <MapPin className="w-3.5 h-3.5 shrink-0" />
                   <span className="truncate">{post.locationName}</span>
                 </div>
@@ -248,7 +248,7 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
 
               {/* Photo Backdrop with Overlay Stats */}
               {post.photoUrl && (
-                <div className="relative aspect-video w-full bg-slate-950 overflow-hidden group">
+                <div className="relative aspect-video w-full bg-[#f8f7f4] overflow-hidden group">
                   <img
                     src={post.photoUrl}
                     alt="Foto do pedal"
@@ -256,28 +256,28 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {post.rideSummary && (
-                    <div className="absolute bottom-3 left-3 right-3 bg-slate-950/85 backdrop-blur-md rounded-xl p-3 border border-slate-800/80 shadow-2xl flex items-center justify-between text-xs">
+                    <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-4 border border-[#1a1a1a]/10 shadow-lg flex items-center justify-between text-xs">
                       <div>
-                        <span className="text-[10px] text-slate-400 block">Distância</span>
-                        <span className="font-mono font-bold text-slate-100 text-sm">
+                        <span className="meta text-[9px] text-[#1a1a1a]/50 block">DISTÂNCIA</span>
+                        <span className="font-mono-numbers font-bold text-[#1a1a1a] text-sm">
                           {post.rideSummary.distance} km
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] text-slate-400 block">Elevação</span>
-                        <span className="font-mono font-bold text-indigo-400 text-sm">
+                        <span className="meta text-[9px] text-[#1a1a1a]/50 block">ELEVAÇÃO</span>
+                        <span className="font-mono-numbers font-bold text-[#2c52a1] text-sm">
                           +{post.rideSummary.elevation} m
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] text-slate-400 block">Vel. Média</span>
-                        <span className="font-mono font-bold text-emerald-400 text-sm">
+                        <span className="meta text-[9px] text-[#1a1a1a]/50 block">VEL. MÉDIA</span>
+                        <span className="font-mono-numbers font-bold text-[#1a1a1a] text-sm">
                           {post.rideSummary.avgSpeed} km/h
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] text-slate-400 block">Duração</span>
-                        <span className="font-mono font-bold text-slate-100 text-sm">
+                        <span className="meta text-[9px] text-[#1a1a1a]/50 block">DURAÇÃO</span>
+                        <span className="font-mono-numbers font-bold text-[#1a1a1a] text-sm">
                           {post.rideSummary.time}
                         </span>
                       </div>
@@ -287,35 +287,35 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
               )}
 
               {/* Caption Content */}
-              <div className="p-4 sm:p-5 space-y-4">
-                <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">{post.content}</p>
+              <div className="p-5 sm:p-6 space-y-4">
+                <p className="text-[#1a1a1a]/85 text-xs sm:text-sm leading-relaxed">{post.content}</p>
 
                 {/* Like and Comment buttons */}
-                <div className="flex items-center gap-4 pt-2 border-t border-slate-800/80">
+                <div className="flex items-center gap-4 pt-3 border-t border-[#1a1a1a]/10">
                   <button
                     onClick={() => toggleLike(post.id)}
-                    className={`flex items-center gap-1.5 text-xs font-semibold transition-colors ${
-                      post.isLiked ? 'text-rose-500' : 'text-slate-400 hover:text-slate-200'
+                    className={`flex items-center gap-1.5 text-xs font-mono-numbers font-bold transition-colors cursor-pointer ${
+                      post.isLiked ? 'text-rose-600' : 'text-[#1a1a1a]/60 hover:text-[#1a1a1a]'
                     }`}
                   >
                     <Heart className={`w-4 h-4 ${post.isLiked ? 'fill-current' : ''}`} />
-                    <span>{post.likes}</span>
+                    <span>{post.likes} CURTIDAS</span>
                   </button>
 
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
+                  <div className="flex items-center gap-1.5 text-xs font-mono-numbers text-[#1a1a1a]/60">
                     <MessageSquare className="w-4 h-4" />
-                    <span>{post.commentsCount} comentários</span>
+                    <span>{post.commentsCount} COMENTÁRIOS</span>
                   </div>
                 </div>
 
                 {/* Comments Thread */}
                 {post.comments.length > 0 && (
-                  <div className="space-y-2 pt-2 bg-slate-950/40 p-3 rounded-xl border border-slate-800/60">
+                  <div className="space-y-2 pt-2 bg-[#f8f7f4] p-4 rounded-2xl border border-[#1a1a1a]/10">
                     {post.comments.map((comm) => (
                       <div key={comm.id} className="text-xs">
-                        <span className="font-bold text-slate-200 mr-2">{comm.author}:</span>
-                        <span className="text-slate-300">{comm.text}</span>
-                        <span className="text-[10px] text-slate-500 ml-2">({comm.time})</span>
+                        <span className="font-bold text-[#1a1a1a] mr-2">{comm.author}:</span>
+                        <span className="text-[#1a1a1a]/80">{comm.text}</span>
+                        <span className="meta text-[10px] text-[#1a1a1a]/40 ml-2">({comm.time})</span>
                       </div>
                     ))}
                   </div>
@@ -331,11 +331,11 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
                       setCommentInput({ ...commentInput, [post.id]: e.target.value })
                     }
                     onKeyDown={(e) => e.key === 'Enter' && addComment(post.id)}
-                    className="flex-1 px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500"
+                    className="flex-1 px-4 py-2.5 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-xs text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus:outline-none focus:border-[#2c52a1]"
                   />
                   <button
                     onClick={() => addComment(post.id)}
-                    className="p-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-colors"
+                    className="p-2.5 rounded-full bg-[#2c52a1] hover:bg-[#234285] text-white transition-colors cursor-pointer"
                   >
                     <Send className="w-3.5 h-3.5" />
                   </button>
@@ -348,60 +348,60 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
 
       {/* TAB 2: LIVE CHALLENGES & GHOST RIDER */}
       {activeSubTab === 'desafios' && (
-        <div className="space-y-5">
-          <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
-            <div className="flex items-center gap-2 text-indigo-400 font-semibold text-xs uppercase mb-1">
+        <div className="space-y-6">
+          <div className="bg-white border border-[#1a1a1a]/10 p-6 sm:p-8 rounded-3xl shadow-xs">
+            <div className="flex items-center gap-2 meta text-[#2c52a1] font-bold mb-1">
               <Swords className="w-4 h-4" />
-              Duelo em Tempo Real
+              DUELO SINCRONIZADO EM TEMPO REAL
             </div>
-            <h3 className="text-xl font-bold text-slate-100">
+            <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#1a1a1a]">
               Desafios com Amigos & Modo Ghost Rider
             </h3>
-            <p className="text-xs text-slate-400 max-w-2xl mt-1">
-              Escolha um segmento ou oponente para duelar. O CicloTrack Pro exibe ao vivo se você está na frente ou atrás com base no ritmo e distância percorrida no mapa.
+            <p className="text-xs sm:text-sm text-[#1a1a1a]/70 max-w-2xl mt-1.5">
+              Selecione um segmento ou oponente para duelar. O CicloTrack Pro calcula em tempo real o diferencial de ritmo e posição relativa no mapa.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {challenges.map((chal) => {
               const isSelected = activeChallengeId === chal.id;
               return (
                 <div
                   key={chal.id}
-                  className={`p-5 rounded-2xl border transition-all flex flex-col justify-between ${
+                  className={`p-6 rounded-3xl border transition-all flex flex-col justify-between shadow-xs ${
                     isSelected
-                      ? 'bg-indigo-950/40 border-indigo-500 shadow-xl ring-1 ring-indigo-500/50'
-                      : 'bg-slate-900 border-slate-800'
+                      ? 'bg-white border-[#2c52a1] ring-1 ring-[#2c52a1]'
+                      : 'bg-white border-[#1a1a1a]/10 hover:border-[#2c52a1]/40'
                   }`}
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-bold text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
-                        Meta: {chal.targetDistanceKm} km
+                      <span className="meta text-[11px] font-bold text-[#2c52a1] bg-[#f8f7f4] px-3 py-1 rounded-full border border-[#1a1a1a]/10">
+                        META: {chal.targetDistanceKm} KM
                       </span>
                       {isSelected && (
-                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40 animate-pulse">
-                          Duelo Ativo no Painel
+                        <span className="meta text-[11px] px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200 animate-pulse">
+                          DUELO ATIVO NO HUD
                         </span>
                       )}
                     </div>
 
-                    <h4 className="font-bold text-slate-100 text-base mb-2">{chal.title}</h4>
+                    <h4 className="font-serif-display text-xl font-bold text-[#1a1a1a] mb-3">{chal.title}</h4>
 
                     {/* Opponent Card */}
-                    <div className="flex items-center gap-3 bg-slate-950/70 p-3 rounded-xl border border-slate-800/80 mb-4">
+                    <div className="flex items-center gap-3.5 bg-[#f8f7f4] p-4 rounded-2xl border border-[#1a1a1a]/10 mb-5">
                       <img
                         src={chal.opponentAvatar}
                         alt={chal.opponentName}
                         referrerPolicy="no-referrer"
-                        className="w-10 h-10 rounded-full object-cover border border-indigo-500/40"
+                        className="w-12 h-12 rounded-full object-cover border border-[#1a1a1a]/20"
                       />
                       <div>
-                        <span className="text-xs font-bold text-slate-200 block">
+                        <span className="font-bold text-sm text-[#1a1a1a] block">
                           {chal.opponentName}
                         </span>
-                        <span className="text-[11px] text-slate-400">
-                          Ritmo Alvo: <strong className="text-indigo-300">{chal.opponentPace}</strong>
+                        <span className="meta text-[11px] text-[#1a1a1a]/60">
+                          RITMO ALVO: <strong className="text-[#2c52a1] font-mono-numbers">{chal.opponentPace}</strong>
                         </span>
                       </div>
                     </div>
@@ -409,10 +409,10 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
 
                   <button
                     onClick={() => onSelectChallenge(chal)}
-                    className={`w-full py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md ${
+                    className={`w-full py-3 rounded-full font-mono-numbers uppercase text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-xs cursor-pointer ${
                       isSelected
-                        ? 'bg-indigo-600 text-white'
-                        : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'
+                        ? 'bg-[#1a1a1a] text-white'
+                        : 'bg-[#2c52a1] hover:bg-[#234285] text-white'
                     }`}
                   >
                     <Swords className="w-4 h-4" />
@@ -427,46 +427,46 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
 
       {/* TAB 3: MONTHLY GLOBAL RANKING */}
       {activeSubTab === 'ranking' && (
-        <div className="space-y-5">
-          <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="space-y-6">
+          <div className="bg-white border border-[#1a1a1a]/10 p-6 sm:p-8 rounded-3xl shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2 text-amber-400 font-semibold text-xs uppercase mb-1">
+              <div className="flex items-center gap-2 meta text-[#2c52a1] font-bold mb-1">
                 <Trophy className="w-4 h-4" />
-                Classificação da Temporada
+                TABELA GERAL DA TEMPORADA
               </div>
-              <h3 className="text-xl font-bold text-slate-100">Ranking Mensal Global - Setembro</h3>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Pontuação calculada com base em distância, elevação e regularidade de treinos.
+              <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#1a1a1a]">Ranking Mensal Global - Setembro</h3>
+              <p className="text-xs sm:text-sm text-[#1a1a1a]/70 mt-1">
+                Pontuação auditada com base em distância, elevação e regularidade nos treinos gravados.
               </p>
             </div>
-            <div className="text-right bg-slate-950/70 px-4 py-2 rounded-xl border border-slate-800">
-              <span className="text-[11px] text-slate-400 block">Sua Posição</span>
-              <span className="font-mono text-xl font-bold text-emerald-400">4º Lugar</span>
+            <div className="text-right bg-[#f8f7f4] px-5 py-3 rounded-2xl border border-[#1a1a1a]/10">
+              <span className="meta text-[10px] text-[#1a1a1a]/60 block mb-0.5">SUA POSIÇÃO</span>
+              <span className="font-mono-numbers text-2xl font-bold text-[#2c52a1]">4º LUGAR</span>
             </div>
           </div>
 
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-            <div className="divide-y divide-slate-800">
+          <div className="bg-white border border-[#1a1a1a]/10 rounded-3xl overflow-hidden shadow-xs">
+            <div className="divide-y divide-[#1a1a1a]/10">
               {leaderboard.map((user) => {
                 const isMe = user.id === 'user-4';
                 return (
                   <div
                     key={user.id}
-                    className={`p-4 flex items-center justify-between gap-4 transition-colors ${
-                      isMe ? 'bg-emerald-950/20' : 'hover:bg-slate-800/40'
+                    className={`p-5 flex items-center justify-between gap-4 transition-colors ${
+                      isMe ? 'bg-[#f8f7f4]' : 'hover:bg-[#f8f7f4]/50'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3.5">
                       {/* Rank badge */}
                       <span
-                        className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs ${
+                        className={`w-8 h-8 rounded-full flex items-center justify-center font-mono-numbers font-bold text-xs ${
                           user.rank === 1
-                            ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-400/20'
+                            ? 'bg-amber-400 text-[#1a1a1a] shadow-xs'
                             : user.rank === 2
-                            ? 'bg-slate-300 text-slate-950'
+                            ? 'bg-slate-300 text-[#1a1a1a]'
                             : user.rank === 3
                             ? 'bg-amber-700 text-white'
-                            : 'bg-slate-800 text-slate-400'
+                            : 'bg-[#f8f7f4] text-[#1a1a1a]/60 border border-[#1a1a1a]/10'
                         }`}
                       >
                         {user.rank}
@@ -476,35 +476,35 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
                         src={user.avatar}
                         alt={user.name}
                         referrerPolicy="no-referrer"
-                        className="w-10 h-10 rounded-full object-cover border border-slate-700"
+                        className="w-11 h-11 rounded-full object-cover border border-[#1a1a1a]/15"
                       />
 
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-bold text-sm text-slate-100">{user.name}</span>
+                          <span className="font-serif-display font-bold text-base text-[#1a1a1a]">{user.name}</span>
                           {isMe && (
-                            <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-500 text-slate-950 font-bold">
+                            <span className="meta text-[9px] px-2 py-0.5 rounded-full bg-[#2c52a1] text-white font-bold">
                               VOCÊ
                             </span>
                           )}
                         </div>
-                        <span className="text-[11px] text-slate-400">
-                          {user.city} • <strong className="text-slate-300">{user.category}</strong>
+                        <span className="meta text-[11px] text-[#1a1a1a]/60">
+                          {user.city} • <strong className="text-[#1a1a1a]">{user.category}</strong>
                         </span>
                       </div>
                     </div>
 
                     {/* Stats */}
-                    <div className="flex items-center gap-4 text-right">
+                    <div className="flex items-center gap-5 text-right">
                       <div className="hidden sm:block">
-                        <span className="text-[10px] text-slate-400 block">Ganho Elev.</span>
-                        <span className="font-mono text-xs font-bold text-indigo-300">
+                        <span className="meta text-[9px] text-[#1a1a1a]/50 block">GANHO ELEV.</span>
+                        <span className="font-mono-numbers text-xs font-bold text-[#2c52a1]">
                           +{user.elevationMonthM} m
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] text-slate-400 block">Distância Total</span>
-                        <span className="font-mono text-sm font-black text-emerald-400">
+                        <span className="meta text-[9px] text-[#1a1a1a]/50 block">DISTÂNCIA TOTAL</span>
+                        <span className="font-mono-numbers text-base font-bold text-[#1a1a1a]">
                           {user.distanceMonthKm} km
                         </span>
                       </div>
@@ -519,32 +519,32 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
 
       {/* TAB 4: ACHIEVEMENTS & BADGES */}
       {activeSubTab === 'conquistas' && (
-        <div className="space-y-5">
-          <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="space-y-6">
+          <div className="bg-white border border-[#1a1a1a]/10 p-6 sm:p-8 rounded-3xl shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2 text-emerald-400 font-semibold text-xs uppercase mb-1">
+              <div className="flex items-center gap-2 meta text-[#2c52a1] font-bold mb-1">
                 <Award className="w-4 h-4" />
-                Gamificação & Medalhas
+                GAMIFICAÇÃO & DISTINÇÕES TÉCNICAS
               </div>
-              <h3 className="text-xl font-bold text-slate-100">
-                Sistema de Conquistas & Metas de Pedal
+              <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#1a1a1a]">
+                Sistema de Conquistas & Metas de Rendimento
               </h3>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Desbloqueie troféus superando metas de distância, altimetria, velocidade e manutenção.
+              <p className="text-xs sm:text-sm text-[#1a1a1a]/70 mt-1">
+                Desbloqueie condecorações superando metas de distância, altimetria acumulada e consistência mecânica.
               </p>
             </div>
-            <div className="flex items-center gap-3 bg-slate-950/70 px-4 py-2.5 rounded-xl border border-slate-800">
-              <Sparkles className="w-5 h-5 text-amber-400" />
+            <div className="flex items-center gap-3 bg-[#f8f7f4] px-5 py-3 rounded-2xl border border-[#1a1a1a]/10">
+              <Sparkles className="w-5 h-5 text-[#2c52a1]" />
               <div>
-                <span className="text-[11px] text-slate-400 block">Pontos Acumulados</span>
-                <span className="font-mono text-xl font-black text-amber-400">
+                <span className="meta text-[10px] text-[#1a1a1a]/60 block">PONTUAÇÃO ACUMULADA</span>
+                <span className="font-mono-numbers text-2xl font-bold text-[#2c52a1]">
                   {totalPoints} pts
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {achievements.map((ach) => (
               <div
                 key={ach.id}
@@ -553,54 +553,54 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
                     confetti({ particleCount: 50, spread: 50 });
                   }
                 }}
-                className={`p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
+                className={`p-6 rounded-3xl border transition-all cursor-pointer flex flex-col justify-between shadow-xs ${
                   ach.unlocked
-                    ? 'bg-slate-900/90 border-emerald-500/50 shadow-lg shadow-emerald-500/5'
-                    : 'bg-slate-950/40 border-slate-800/80 opacity-70'
+                    ? 'bg-white border-[#2c52a1] ring-1 ring-[#2c52a1]/20'
+                    : 'bg-white border-[#1a1a1a]/10 opacity-70'
                 }`}
               >
                 <div>
-                  <div className="flex items-start justify-between gap-2 mb-2.5">
+                  <div className="flex items-start justify-between gap-2 mb-3">
                     <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                      className={`w-11 h-11 rounded-2xl flex items-center justify-center ${
                         ach.unlocked
-                          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                          : 'bg-slate-800 text-slate-500'
+                          ? 'bg-[#2c52a1] text-white shadow-xs'
+                          : 'bg-[#f8f7f4] text-[#1a1a1a]/40 border border-[#1a1a1a]/10'
                       }`}
                     >
                       <Award className="w-5 h-5" />
                     </div>
                     <span
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase border ${
+                      className={`meta text-[10px] font-bold px-3 py-1 rounded-full uppercase border ${
                         ach.unlocked
-                          ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
-                          : 'bg-slate-800 text-slate-400 border-slate-700'
+                          ? 'bg-blue-50 text-[#2c52a1] border-blue-200'
+                          : 'bg-[#f8f7f4] text-[#1a1a1a]/50 border-[#1a1a1a]/10'
                       }`}
                     >
-                      {ach.unlocked ? `+${ach.rewardPoints} pts` : `${ach.progress}%`}
+                      {ach.unlocked ? `+${ach.rewardPoints} PTS` : `${ach.progress}%`}
                     </span>
                   </div>
 
-                  <h4 className="font-bold text-slate-100 text-sm mb-1">{ach.title}</h4>
-                  <p className="text-xs text-slate-400 leading-relaxed mb-3">
+                  <h4 className="font-serif-display text-lg font-bold text-[#1a1a1a] mb-1">{ach.title}</h4>
+                  <p className="text-xs text-[#1a1a1a]/70 leading-relaxed mb-4">
                     {ach.description}
                   </p>
                 </div>
 
                 {ach.unlocked ? (
-                  <div className="flex items-center gap-1.5 text-[11px] text-emerald-400 pt-2 border-t border-slate-800 font-medium">
+                  <div className="flex items-center gap-1.5 meta text-[11px] text-[#2c52a1] pt-3 border-t border-[#1a1a1a]/10 font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>Conquistado em {ach.unlockedDate}</span>
                   </div>
                 ) : (
-                  <div className="space-y-1 pt-2 border-t border-slate-800">
-                    <div className="flex justify-between text-[11px] font-mono text-slate-400">
-                      <span>Progresso</span>
-                      <span>{ach.progress}%</span>
+                  <div className="space-y-1.5 pt-3 border-t border-[#1a1a1a]/10">
+                    <div className="flex justify-between meta text-[10px] text-[#1a1a1a]/60">
+                      <span>PROGRESSO</span>
+                      <span className="font-mono-numbers">{ach.progress}%</span>
                     </div>
-                    <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                    <div className="w-full h-2 bg-[#f8f7f4] rounded-full overflow-hidden border border-[#1a1a1a]/10">
                       <div
-                        className="h-full bg-slate-600 rounded-full"
+                        className="h-full bg-[#2c52a1] rounded-full"
                         style={{ width: `${ach.progress}%` }}
                       />
                     </div>
@@ -614,16 +614,16 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
 
       {/* NEW POST MODAL */}
       {showNewPostModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-              <h4 className="font-bold text-slate-100 text-base flex items-center gap-2">
-                <Camera className="w-4 h-4 text-emerald-400" />
+        <div className="fixed inset-0 z-50 bg-[#1a1a1a]/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white border border-[#1a1a1a]/10 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5">
+            <div className="flex items-center justify-between pb-4 border-b border-[#1a1a1a]/10">
+              <h4 className="font-serif-display text-xl font-bold text-[#1a1a1a] flex items-center gap-2">
+                <Camera className="w-5 h-5 text-[#2c52a1]" />
                 Nova Publicação no Feed Social
               </h4>
               <button
                 onClick={() => setShowNewPostModal(false)}
-                className="text-slate-400 hover:text-slate-200 text-sm font-bold"
+                className="text-[#1a1a1a]/40 hover:text-[#1a1a1a] text-lg font-bold cursor-pointer"
               >
                 ✕
               </button>
@@ -631,8 +631,8 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
 
             <form onSubmit={handleCreatePost} className="space-y-4">
               <div>
-                <label className="text-xs text-slate-400 block mb-1">
-                  Legenda / Como foi o pedal?
+                <label className="meta text-[10px] text-[#1a1a1a]/60 block mb-1.5 font-bold">
+                  LEGENDA / COMO FOI O PEDAL?
                 </label>
                 <textarea
                   rows={3}
@@ -640,41 +640,45 @@ export const SocialFeed: React.FC<SocialFeedProps> = ({
                   onChange={(e) => setNewPostContent(e.target.value)}
                   placeholder="Compartilhe como foi a altimetria, o clima, as condições do piso ou mande um recado para os amigos..."
                   required
-                  className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500"
+                  className="w-full p-3.5 rounded-2xl bg-[#f8f7f4] border border-[#1a1a1a]/10 text-xs text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus:outline-none focus:border-[#2c52a1]"
                 />
               </div>
 
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Local Geolocalizado</label>
+                <label className="meta text-[10px] text-[#1a1a1a]/60 block mb-1.5 font-bold">
+                  LOCAL GEOLOCALIZADO
+                </label>
                 <input
                   type="text"
                   value={newPostLocation}
                   onChange={(e) => setNewPostLocation(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-100 focus:outline-none focus:border-emerald-500"
+                  className="w-full p-3 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-xs text-[#1a1a1a] focus:outline-none focus:border-[#2c52a1]"
                 />
               </div>
 
               <div>
-                <label className="text-xs text-slate-400 block mb-1">URL da Foto</label>
+                <label className="meta text-[10px] text-[#1a1a1a]/60 block mb-1.5 font-bold">
+                  URL DA FOTOGRAFIA
+                </label>
                 <input
                   type="url"
                   value={newPostPhoto}
                   onChange={(e) => setNewPostPhoto(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-100 focus:outline-none focus:border-emerald-500"
+                  className="w-full p-3 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-xs text-[#1a1a1a] focus:outline-none focus:border-[#2c52a1]"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-800">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#1a1a1a]/10">
                 <button
                   type="button"
                   onClick={() => setShowNewPostModal(false)}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-slate-200"
+                  className="px-5 py-2.5 rounded-full text-xs font-mono-numbers font-semibold text-[#1a1a1a]/60 hover:text-[#1a1a1a] cursor-pointer"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-md"
+                  className="px-6 py-2.5 rounded-full bg-[#2c52a1] hover:bg-[#234285] text-white font-mono-numbers uppercase font-bold text-xs shadow-xs cursor-pointer"
                 >
                   Publicar Agora
                 </button>

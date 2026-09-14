@@ -99,35 +99,35 @@ export const BikeCare: React.FC<BikeCareProps> = ({
 
   return (
     <div id="bike-care-section" className="space-y-6">
-      {/* Top Health Overview Card */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-emerald-950/40 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl">
+      {/* Top Health Overview Card - Variation 3 */}
+      <div className="bg-white border border-[#1a1a1a]/10 rounded-3xl p-6 sm:p-8 shadow-xs">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-emerald-400 font-semibold text-xs tracking-wider uppercase">
+            <div className="flex items-center gap-2 meta text-[#2c52a1] font-bold">
               <ShieldCheck className="w-4 h-4" />
-              Saúde Global da Bicicleta
+              SAÚDE GLOBAL DA BICICLETA • MANUTENÇÃO PREVENTIVA
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-slate-100">
-              Manutenção Preventiva & Componentes
+            <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#1a1a1a]">
+              Diagnóstico de Desgaste & Revisões
             </h3>
-            <p className="text-slate-400 text-xs sm:text-sm max-w-xl">
-              Acompanhamento inteligente de desgaste por quilometragem percorrida. Evite quebras na estrada e economize com trocas no momento exato.
+            <p className="text-[#1a1a1a]/70 text-xs sm:text-sm max-w-xl">
+              Acompanhamento métrico de fadiga material baseado na quilometragem percorrida e torque registrado. Previna avarias em rota e maximize a durabilidade.
             </p>
           </div>
 
           {/* Big Circular Score */}
-          <div className="flex items-center gap-4 bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 shrink-0">
+          <div className="flex items-center gap-5 bg-[#f8f7f4] p-5 rounded-2xl border border-[#1a1a1a]/10 shrink-0">
             <div className="relative w-16 h-16 flex items-center justify-center">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                 <path
-                  className="text-slate-800"
+                  className="text-[#1a1a1a]/10"
                   strokeWidth="3.5"
                   stroke="currentColor"
                   fill="none"
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                 />
                 <path
-                  className="text-emerald-500"
+                  className="text-[#2c52a1]"
                   strokeDasharray={`${totalScore}, 100`}
                   strokeWidth="3.5"
                   strokeLinecap="round"
@@ -136,17 +136,17 @@ export const BikeCare: React.FC<BikeCareProps> = ({
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                 />
               </svg>
-              <span className="absolute font-bold text-lg font-mono text-emerald-400">
+              <span className="absolute font-bold text-lg font-mono-numbers text-[#1a1a1a]">
                 {totalScore}%
               </span>
             </div>
             <div>
-              <span className="text-xs text-slate-400 block">Status da Bike</span>
-              <span className="font-bold text-slate-100 text-sm">
+              <span className="meta text-[#1a1a1a]/60 block text-[10px]">CONDIÇÃO GLOBAL</span>
+              <span className="font-serif-display text-base font-bold text-[#1a1a1a]">
                 {totalScore >= 80 ? 'Excelente Condição' : totalScore >= 60 ? 'Revisão Recomendada' : 'Atenção Crítica'}
               </span>
-              <span className="text-[11px] text-slate-500 block">
-                {components.filter((c) => c.status !== 'otimo').length} alertas pendentes
+              <span className="meta text-[#2c52a1] block text-[11px] mt-0.5 font-bold">
+                {components.filter((c) => c.status !== 'otimo').length} alertas técnicos pendentes
               </span>
             </div>
           </div>
@@ -154,27 +154,27 @@ export const BikeCare: React.FC<BikeCareProps> = ({
       </div>
 
       {/* Grid: Interactive Tire Pressure Calculator + Lube Alert */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Tire Pressure Calculator (2 columns) */}
-        <div className="md:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
+        <div className="md:col-span-2 bg-white border border-[#1a1a1a]/10 rounded-3xl p-6 shadow-xs">
+          <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-[#2c52a1] flex items-center justify-center">
                 <Gauge className="w-4 h-4" />
               </div>
-              <h4 className="font-bold text-slate-100 text-sm sm:text-base">
+              <h4 className="font-serif-display text-xl font-bold text-[#1a1a1a]">
                 Calculadora Dinâmica de Pressão (PSI)
               </h4>
             </div>
-            <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-medium">
-              Baseada em Física do Rolamento
+            <span className="meta px-3 py-1 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-[#2c52a1] font-bold">
+              DINÂMICA DE ROLAMENTO
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
             <div>
-              <label className="text-xs text-slate-400 block mb-1">
-                Peso do Ciclista: <span className="text-cyan-400 font-mono font-bold">{cyclistWeight} kg</span>
+              <label className="meta text-[#1a1a1a]/70 block mb-1.5">
+                PESO DO CICLISTA: <span className="text-[#2c52a1] font-bold">{cyclistWeight} KG</span>
               </label>
               <input
                 type="range"
@@ -182,21 +182,21 @@ export const BikeCare: React.FC<BikeCareProps> = ({
                 max="120"
                 value={cyclistWeight}
                 onChange={(e) => setCyclistWeight(Number(e.target.value))}
-                className="w-full accent-cyan-500 cursor-pointer"
+                className="w-full accent-[#2c52a1] cursor-pointer"
               />
             </div>
 
             <div>
-              <label className="text-xs text-slate-400 block mb-1">Tipo de Modalidade</label>
-              <div className="grid grid-cols-3 gap-1">
+              <label className="meta text-[#1a1a1a]/70 block mb-1.5">MODALIDADE</label>
+              <div className="grid grid-cols-3 gap-1.5">
                 {(['estrada', 'gravel', 'mtb'] as const).map((t) => (
                   <button
                     key={t}
                     onClick={() => setTireType(t)}
-                    className={`text-[11px] py-1 rounded font-medium capitalize border transition-all ${
+                    className={`text-xs py-1.5 rounded-full font-mono-numbers uppercase font-medium border transition-all cursor-pointer ${
                       tireType === t
-                        ? 'bg-cyan-500 text-slate-950 font-bold border-cyan-400'
-                        : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-slate-200'
+                        ? 'bg-[#2c52a1] text-white font-bold border-[#2c52a1]'
+                        : 'bg-[#f8f7f4] text-[#1a1a1a]/70 border-[#1a1a1a]/10 hover:border-[#1a1a1a]/30'
                     }`}
                   >
                     {t}
@@ -206,94 +206,96 @@ export const BikeCare: React.FC<BikeCareProps> = ({
             </div>
 
             <div>
-              <label className="text-xs text-slate-400 block mb-1">Condições</label>
+              <label className="meta text-[#1a1a1a]/70 block mb-1.5">CONFIGURAÇÃO</label>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsTubeless(!isTubeless)}
-                  className={`text-[11px] px-2 py-1 rounded font-medium border flex-1 transition-all ${
+                  className={`text-xs py-1.5 px-3 rounded-full font-mono-numbers uppercase font-medium border flex-1 transition-all cursor-pointer ${
                     isTubeless
-                      ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                      : 'bg-slate-800 text-slate-400 border-slate-700'
+                      ? 'bg-[#2c52a1] text-white border-[#2c52a1]'
+                      : 'bg-[#f8f7f4] text-[#1a1a1a]/70 border-[#1a1a1a]/10'
                   }`}
                 >
-                  {isTubeless ? '✓ Tubeless' : 'Câmara'}
+                  {isTubeless ? '✓ TUBELESS' : 'CÂMARA'}
                 </button>
                 <button
                   onClick={() => setIsWetSurface(!isWetSurface)}
-                  className={`text-[11px] px-2 py-1 rounded font-medium border flex-1 transition-all ${
+                  className={`text-xs py-1.5 px-3 rounded-full font-mono-numbers uppercase font-medium border flex-1 transition-all cursor-pointer ${
                     isWetSurface
-                      ? 'bg-sky-500/20 text-sky-300 border-sky-500/40'
-                      : 'bg-slate-800 text-slate-400 border-slate-700'
+                      ? 'bg-[#2c52a1] text-white border-[#2c52a1]'
+                      : 'bg-[#f8f7f4] text-[#1a1a1a]/70 border-[#1a1a1a]/10'
                   }`}
                 >
-                  {isWetSurface ? 'Piso Molhado' : 'Piso Seco'}
+                  {isWetSurface ? 'MOLHADO' : 'SECO'}
                 </button>
               </div>
             </div>
           </div>
 
           {/* Results Display */}
-          <div className="grid grid-cols-2 gap-3 bg-slate-950/80 p-3.5 rounded-xl border border-slate-800/80">
-            <div className="text-center p-2 rounded-lg bg-slate-900/60 border border-slate-800">
-              <span className="text-xs text-slate-400 block">Pneu Dianteiro</span>
-              <span className="font-mono text-2xl font-black text-cyan-400">
+          <div className="grid grid-cols-2 gap-4 bg-[#f8f7f4] p-4 rounded-2xl border border-[#1a1a1a]/10">
+            <div className="text-center p-3 rounded-xl bg-white border border-[#1a1a1a]/10">
+              <span className="meta text-[#1a1a1a]/60 block text-[10px]">PNEU DIANTEIRO</span>
+              <span className="font-mono-numbers text-3xl font-bold text-[#2c52a1]">
                 {recommendedPSI.front}{' '}
-                <span className="text-xs font-sans text-slate-400">PSI</span>
+                <span className="text-xs font-sans text-[#1a1a1a]/60">PSI</span>
               </span>
-              <span className="text-[10px] text-slate-500 block">Mais conforto & grip</span>
+              <span className="text-[11px] text-[#1a1a1a]/60 block mt-0.5">Aderência e absorção</span>
             </div>
-            <div className="text-center p-2 rounded-lg bg-slate-900/60 border border-slate-800">
-              <span className="text-xs text-slate-400 block">Pneu Traseiro</span>
-              <span className="font-mono text-2xl font-black text-cyan-400">
+            <div className="text-center p-3 rounded-xl bg-white border border-[#1a1a1a]/10">
+              <span className="meta text-[#1a1a1a]/60 block text-[10px]">PNEU TRASEIRO</span>
+              <span className="font-mono-numbers text-3xl font-bold text-[#2c52a1]">
                 {recommendedPSI.rear}{' '}
-                <span className="text-xs font-sans text-slate-400">PSI</span>
+                <span className="text-xs font-sans text-[#1a1a1a]/60">PSI</span>
               </span>
-              <span className="text-[10px] text-slate-500 block">Suporta maior carga</span>
+              <span className="text-[11px] text-[#1a1a1a]/60 block mt-0.5">Suporte de tração e carga</span>
             </div>
           </div>
         </div>
 
         {/* Quick Lube & Chain Check (1 column) */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between">
+        <div className="bg-white border border-[#1a1a1a]/10 rounded-3xl p-6 shadow-xs flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-8 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-[#2c52a1] flex items-center justify-center">
                 <Droplets className="w-4 h-4" />
               </div>
-              <h4 className="font-bold text-slate-100 text-sm">
+              <h4 className="font-serif-display text-xl font-bold text-[#1a1a1a]">
                 Lubrificação da Corrente
               </h4>
             </div>
-            <p className="text-xs text-slate-400 mb-3">
-              Última aplicação feita há 65 km. Recomendado reaplicar cera cerâmica a cada 120-150 km.
+            <p className="text-xs text-[#1a1a1a]/70 mb-4">
+              Última aplicação registrada há 65 km. Cera cerâmica recomendada a cada 120–150 km em piso seco.
             </p>
-            <div className="space-y-1.5 mb-4">
-              <div className="flex justify-between text-xs font-medium">
-                <span className="text-slate-400">Autonomia do lubrificante</span>
-                <span className="text-amber-400 font-mono">65 / 150 km</span>
+            <div className="space-y-2 mb-5">
+              <div className="flex justify-between text-xs font-mono-numbers">
+                <span className="meta text-[#1a1a1a]/60">AUTONOMIA CERA</span>
+                <span className="text-[#2c52a1] font-bold">65 / 150 KM</span>
               </div>
-              <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-                <div className="h-full bg-amber-500 rounded-full" style={{ width: '43%' }} />
+              <div className="w-full h-2 bg-[#1a1a1a]/10 rounded-full overflow-hidden">
+                <div className="h-full bg-[#2c52a1] rounded-full" style={{ width: '43%' }} />
               </div>
             </div>
           </div>
 
           <button
             onClick={() => onResetKm('corrente')}
-            className="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center justify-center gap-2 transition-colors"
+            className="w-full py-2.5 px-4 rounded-full bg-[#f8f7f4] hover:bg-[#2c52a1] text-[#1a1a1a] hover:text-white border border-[#1a1a1a]/10 text-xs font-mono-numbers uppercase font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer"
           >
-            <RotateCcw className="w-3.5 h-3.5 text-amber-400" />
+            <RotateCcw className="w-3.5 h-3.5" />
             Registrar Nova Lubrificação
           </button>
         </div>
       </div>
 
       {/* Component Wear List with Category Filter */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
-          <div className="flex items-center gap-2">
-            <Wrench className="w-5 h-5 text-emerald-400" />
-            <h4 className="font-bold text-slate-100 text-base">
+      <div className="bg-white border border-[#1a1a1a]/10 rounded-3xl p-6 sm:p-8 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-[#2c52a1] flex items-center justify-center">
+              <Wrench className="w-4 h-4" />
+            </div>
+            <h4 className="font-serif-display text-2xl font-bold text-[#1a1a1a]">
               Monitor de Desgaste dos Componentes
             </h4>
           </div>
@@ -301,19 +303,19 @@ export const BikeCare: React.FC<BikeCareProps> = ({
           {/* Category Filter Pills */}
           <div className="flex flex-wrap gap-1.5">
             {[
-              { key: 'todos', label: 'Todos' },
-              { key: 'transmissao', label: 'Transmissão' },
-              { key: 'freios', label: 'Freios' },
-              { key: 'pneus', label: 'Pneus' },
-              { key: 'suspensao', label: 'Suspensão' }
+              { key: 'todos', label: 'TODOS' },
+              { key: 'transmissao', label: 'TRANSMISSÃO' },
+              { key: 'freios', label: 'FREIOS' },
+              { key: 'pneus', label: 'PNEUS' },
+              { key: 'suspensao', label: 'SUSPENSÃO' }
             ].map((cat) => (
               <button
                 key={cat.key}
                 onClick={() => setFilterCategory(cat.key)}
-                className={`text-xs px-2.5 py-1 rounded-lg font-medium border transition-all ${
+                className={`text-xs px-3.5 py-1 rounded-full font-mono-numbers transition-all cursor-pointer border ${
                   filterCategory === cat.key
-                    ? 'bg-emerald-500 text-slate-950 font-bold border-emerald-400'
-                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-slate-200'
+                    ? 'bg-[#2c52a1] text-white font-bold border-[#2c52a1]'
+                    : 'bg-[#f8f7f4] text-[#1a1a1a]/70 border-[#1a1a1a]/10 hover:border-[#1a1a1a]/30'
                 }`}
               >
                 {cat.label}
@@ -322,7 +324,7 @@ export const BikeCare: React.FC<BikeCareProps> = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filteredComponents.map((comp) => {
             const usagePercent = Math.min(100, Math.round((comp.currentKm / comp.maxRecommendedKm) * 100));
             const isCritical = comp.status === 'critico' || usagePercent >= 90;
@@ -331,50 +333,44 @@ export const BikeCare: React.FC<BikeCareProps> = ({
             return (
               <div
                 key={comp.id}
-                className={`p-4 rounded-xl border transition-all ${
-                  isCritical
-                    ? 'bg-rose-950/20 border-rose-800/60 shadow-lg shadow-rose-950/20'
-                    : isAttention
-                    ? 'bg-amber-950/20 border-amber-800/60'
-                    : 'bg-slate-950/60 border-slate-800/80 hover:border-slate-700'
-                }`}
+                className="p-5 rounded-2xl bg-[#f8f7f4] border border-[#1a1a1a]/10 hover:border-[#2c52a1]/40 transition-all"
               >
-                <div className="flex items-start justify-between gap-3 mb-2.5">
+                <div className="flex items-start justify-between gap-3 mb-3">
                   <div>
-                    <h5 className="font-bold text-slate-100 text-sm">{comp.name}</h5>
-                    <span className="text-[11px] text-slate-400">{comp.partDetails}</span>
+                    <h5 className="font-serif-display text-lg font-bold text-[#1a1a1a]">{comp.name}</h5>
+                    <span className="meta text-[#1a1a1a]/60 block text-[11px] mt-0.5">{comp.partDetails}</span>
                   </div>
                   <span
-                    className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border shrink-0 ${
+                    className={`text-[10px] font-mono-numbers uppercase font-bold px-2.5 py-0.5 rounded-full border shrink-0 ${
                       isCritical
-                        ? 'bg-rose-500/20 text-rose-400 border-rose-500/30'
+                        ? 'bg-rose-50 text-rose-800 border-rose-200'
                         : isAttention
-                        ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
-                        : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+                        ? 'bg-amber-50 text-amber-800 border-amber-200'
+                        : 'bg-emerald-50 text-emerald-800 border-emerald-200'
                     }`}
                   >
-                    {isCritical ? 'Troca Urgente' : isAttention ? 'Atenção' : 'Excelente'}
+                    {isCritical ? 'TROCA URGENTE' : isAttention ? 'ATENÇÃO' : 'EXCELENTE'}
                   </span>
                 </div>
 
                 {/* Progress bar */}
-                <div className="space-y-1 mb-3">
-                  <div className="flex justify-between text-xs font-mono">
-                    <span className="text-slate-400">
-                      {comp.currentKm} km / {comp.maxRecommendedKm} km
+                <div className="space-y-1.5 mb-3.5">
+                  <div className="flex justify-between text-xs font-mono-numbers">
+                    <span className="text-[#1a1a1a]/60">
+                      {comp.currentKm} KM / {comp.maxRecommendedKm} KM
                     </span>
                     <span
                       className={`font-bold ${
-                        isCritical ? 'text-rose-400' : isAttention ? 'text-amber-400' : 'text-emerald-400'
+                        isCritical ? 'text-rose-600' : isAttention ? 'text-amber-600' : 'text-[#2c52a1]'
                       }`}
                     >
-                      {usagePercent}% usado
+                      {usagePercent}% USADO
                     </span>
                   </div>
-                  <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="w-full h-2 bg-[#1a1a1a]/10 rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all ${
-                        isCritical ? 'bg-rose-500' : isAttention ? 'bg-amber-500' : 'bg-emerald-500'
+                        isCritical ? 'bg-rose-600' : isAttention ? 'bg-amber-500' : 'bg-[#2c52a1]'
                       }`}
                       style={{ width: `${usagePercent}%` }}
                     />
@@ -382,21 +378,21 @@ export const BikeCare: React.FC<BikeCareProps> = ({
                 </div>
 
                 {/* Tips and Advice */}
-                <p className="text-xs text-slate-300 mb-3 bg-slate-900/80 p-2 rounded-lg border border-slate-800/80">
+                <p className="text-xs text-[#1a1a1a]/70 mb-4 bg-white p-3 rounded-xl border border-[#1a1a1a]/10">
                   {comp.tips}
                 </p>
 
                 {/* Actions */}
-                <div className="flex items-center justify-between pt-1 border-t border-slate-800/60">
-                  <span className="text-[11px] text-slate-500">
-                    Última revisão: {comp.lastServiceDate}
+                <div className="flex items-center justify-between pt-2 border-t border-[#1a1a1a]/10">
+                  <span className="meta text-[#1a1a1a]/50 text-[10px]">
+                    ÚLTIMA REVISÃO: {comp.lastServiceDate}
                   </span>
                   <button
                     onClick={() => onResetKm(comp.id)}
-                    className="text-xs font-semibold px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-colors"
+                    className="text-xs font-mono-numbers uppercase font-bold px-3 py-1.5 rounded-full bg-white hover:bg-[#2c52a1] text-[#1a1a1a] hover:text-white border border-[#1a1a1a]/10 flex items-center gap-1.5 transition-colors cursor-pointer"
                   >
-                    <RotateCcw className="w-3 h-3 text-emerald-400" />
-                    Zerar / Peça Nova
+                    <RotateCcw className="w-3 h-3" />
+                    Zerar / Nova Peça
                   </button>
                 </div>
               </div>

@@ -99,57 +99,62 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5">
+    <div className="fixed inset-0 z-50 bg-[#1a1a1a]/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div className="bg-white border border-[#1a1a1a]/10 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5">
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+        <div className="flex items-center justify-between pb-4 border-b border-[#1a1a1a]/10">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-[#2c52a1] flex items-center justify-center">
               <Settings className="w-4 h-4" />
             </div>
-            <h4 className="font-bold text-slate-100 text-base">
-              Configurações & Personalização
-            </h4>
+            <div>
+              <h4 className="font-serif-display text-xl font-bold text-[#1a1a1a]">
+                Configurações & Ajustes
+              </h4>
+              <p className="meta text-[10px] text-[#1a1a1a]/50">
+                PARÂMETROS DA CONTA & TELEMETRIA
+              </p>
+            </div>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-200 text-sm font-bold p-1"
+            className="text-[#1a1a1a]/40 hover:text-[#1a1a1a] text-lg font-bold p-1 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Tab navigation */}
-        <div className="flex items-center gap-1 bg-slate-950/60 p-1 rounded-xl border border-slate-800">
+        <div className="flex items-center gap-1 bg-[#f8f7f4] p-1 rounded-full border border-[#1a1a1a]/10">
           <button
             onClick={() => setActiveTab('interface')}
-            className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`flex-1 py-2 rounded-full text-xs font-mono-numbers uppercase font-bold transition-all cursor-pointer ${
               activeTab === 'interface'
-                ? 'bg-slate-800 text-emerald-400 shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#2c52a1] text-white shadow-xs'
+                : 'text-[#1a1a1a]/60 hover:text-[#1a1a1a]'
             }`}
           >
-            Aparência & Tema
+            Interface
           </button>
           <button
             onClick={() => setActiveTab('vestiveis')}
-            className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`flex-1 py-2 rounded-full text-xs font-mono-numbers uppercase font-bold transition-all cursor-pointer ${
               activeTab === 'vestiveis'
-                ? 'bg-slate-800 text-emerald-400 shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#2c52a1] text-white shadow-xs'
+                : 'text-[#1a1a1a]/60 hover:text-[#1a1a1a]'
             }`}
           >
-            Dispositivos & Wearables
+            Dispositivos
           </button>
           <button
             onClick={() => setActiveTab('perfil')}
-            className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`flex-1 py-2 rounded-full text-xs font-mono-numbers uppercase font-bold transition-all cursor-pointer ${
               activeTab === 'perfil'
-                ? 'bg-slate-800 text-emerald-400 shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#2c52a1] text-white shadow-xs'
+                : 'text-[#1a1a1a]/60 hover:text-[#1a1a1a]'
             }`}
           >
-            Métricas & Peso
+            Perfil & Peso
           </button>
         </div>
 
@@ -157,26 +162,26 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         {activeTab === 'interface' && (
           <div className="space-y-4">
             <div>
-              <label className="text-xs font-bold text-slate-300 block mb-2 uppercase tracking-wider">
-                Tema Visual da Interface:
+              <label className="meta text-[10px] text-[#1a1a1a]/60 block mb-2 font-bold">
+                TEMA VISUAL DA INTERFACE:
               </label>
               <div className="space-y-2">
                 {themes.map((th) => (
                   <button
                     key={th.key}
                     onClick={() => onUpdatePreferences({ theme: th.key })}
-                    className={`w-full p-3 rounded-xl border text-left flex items-center justify-between transition-all ${
+                    className={`w-full p-3.5 rounded-2xl border text-left flex items-center justify-between transition-all cursor-pointer ${
                       preferences.theme === th.key
-                        ? 'bg-slate-800/90 border-emerald-500 shadow-md'
-                        : 'bg-slate-950/60 border-slate-800 hover:bg-slate-800/40'
+                        ? 'bg-[#f8f7f4] border-[#2c52a1] shadow-xs'
+                        : 'bg-white border-[#1a1a1a]/10 hover:bg-[#f8f7f4]/60'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <span className={`w-4 h-4 rounded-full border-2 ${th.accent} ${th.bg}`} />
-                      <span className="text-xs font-bold text-slate-100">{th.name}</span>
+                      <span className="text-xs font-bold text-[#1a1a1a]">{th.name}</span>
                     </div>
                     {preferences.theme === th.key && (
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                      <CheckCircle2 className="w-4 h-4 text-[#2c52a1]" />
                     )}
                   </button>
                 ))}
@@ -184,16 +189,16 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
 
             {/* Quick toggles */}
-            <div className="space-y-2 pt-2 border-t border-slate-800">
-              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950/40 border border-slate-800">
-                <div className="flex items-center gap-2.5">
-                  <BatteryCharging className="w-4 h-4 text-amber-400" />
+            <div className="space-y-2.5 pt-2 border-t border-[#1a1a1a]/10">
+              <div className="flex items-center justify-between p-4 rounded-2xl bg-[#f8f7f4] border border-[#1a1a1a]/10">
+                <div className="flex items-center gap-3">
+                  <BatteryCharging className="w-5 h-5 text-[#2c52a1]" />
                   <div>
-                    <span className="text-xs font-bold text-slate-100 block">
+                    <span className="text-xs font-bold text-[#1a1a1a] block">
                       Modo Economia Extrema (Audax)
                     </span>
-                    <span className="text-[11px] text-slate-400">
-                      Reduz taxa de atualização e desliga efeitos 3D
+                    <span className="meta text-[10px] text-[#1a1a1a]/60">
+                      Reduz taxa de atualização e aplica paleta OLED de baixo consumo
                     </span>
                   </div>
                 </div>
@@ -201,31 +206,31 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   type="checkbox"
                   checked={preferences.batterySaver}
                   onChange={(e) => onUpdatePreferences({ batterySaver: e.target.checked })}
-                  className="w-4 h-4 accent-emerald-500 cursor-pointer"
+                  className="w-4 h-4 accent-[#2c52a1] cursor-pointer"
                 />
               </div>
 
-              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950/40 border border-slate-800">
-                <div className="flex items-center gap-2.5">
-                  <Bell className="w-4 h-4 text-cyan-400" />
+              <div className="flex items-center justify-between p-4 rounded-2xl bg-[#f8f7f4] border border-[#1a1a1a]/10">
+                <div className="flex items-center gap-3">
+                  <Bell className="w-5 h-5 text-[#2c52a1]" />
                   <div>
-                    <span className="text-xs font-bold text-slate-100 block">
+                    <span className="text-xs font-bold text-[#1a1a1a] block">
                       Notificações Push de Progresso
                     </span>
-                    <span className="text-[11px] text-slate-400">
-                      Alertas a cada quilômetro e metas atingidas
+                    <span className="meta text-[10px] text-[#1a1a1a]/60">
+                      Alertas a cada quilômetro e parciais de segmento
                     </span>
                   </div>
                 </div>
                 <button
                   onClick={requestPushPermission}
-                  className={`text-xs px-2.5 py-1 rounded font-semibold border ${
+                  className={`meta text-[10px] px-3 py-1.5 rounded-full font-bold border cursor-pointer ${
                     notificationGranted
-                      ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
-                      : 'bg-slate-800 text-slate-300 border-slate-700'
+                      ? 'bg-blue-50 text-[#2c52a1] border-blue-200'
+                      : 'bg-white text-[#1a1a1a]/70 border-[#1a1a1a]/20'
                   }`}
                 >
-                  {notificationGranted ? 'Ativadas' : 'Permitir'}
+                  {notificationGranted ? 'ATIVADAS' : 'PERMITIR'}
                 </button>
               </div>
             </div>
@@ -235,33 +240,33 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         {/* TAB 2: WEARABLE INTEGRATIONS */}
         {activeTab === 'vestiveis' && (
           <div className="space-y-3">
-            <span className="text-xs text-slate-400 block">
-              Conecte suas contas de saúde e ciclocomputadores para exportação automática:
+            <span className="meta text-[10px] text-[#1a1a1a]/60 block">
+              SINCRONIZAÇÃO AUTOMÁTICA COM PLATAFORMAS EXTERNAS:
             </span>
 
             <div className="space-y-2.5">
               {wearables.map((w) => (
                 <div
                   key={w.key}
-                  className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between gap-3"
+                  className="p-4 rounded-2xl bg-[#f8f7f4] border border-[#1a1a1a]/10 flex items-center justify-between gap-3"
                 >
                   <div className="flex items-center gap-3">
                     <span className="text-xl">{w.icon}</span>
                     <div>
-                      <h5 className="font-bold text-slate-100 text-xs sm:text-sm">{w.name}</h5>
-                      <p className="text-[11px] text-slate-400">{w.desc}</p>
+                      <h5 className="font-bold text-[#1a1a1a] text-xs sm:text-sm">{w.name}</h5>
+                      <p className="text-[11px] text-[#1a1a1a]/60">{w.desc}</p>
                     </div>
                   </div>
 
                   <button
                     onClick={() => toggleWearable(w.key)}
-                    className={`text-xs px-3 py-1.5 rounded-lg font-bold border transition-all shrink-0 ${
+                    className={`meta text-[10px] px-3.5 py-1.5 rounded-full font-bold border transition-all shrink-0 cursor-pointer ${
                       w.connected
-                        ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
-                        : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-slate-200'
+                        ? 'bg-[#2c52a1] text-white border-[#2c52a1]'
+                        : 'bg-white text-[#1a1a1a]/70 border-[#1a1a1a]/20 hover:border-[#2c52a1]'
                     }`}
                   >
-                    {w.connected ? '✓ Conectado' : 'Conectar'}
+                    {w.connected ? '✓ CONECTADO' : 'CONECTAR'}
                   </button>
                 </div>
               ))}
@@ -273,29 +278,29 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         {activeTab === 'perfil' && (
           <div className="space-y-4">
             <div>
-              <label className="text-xs font-bold text-slate-300 block mb-1">
-                Peso do Ciclista (kg)
+              <label className="meta text-[10px] text-[#1a1a1a]/60 block mb-1 font-bold">
+                PESO DO CICLISTA (KG)
               </label>
-              <p className="text-[11px] text-slate-400 mb-2">
-                Usado para o cálculo preciso de gasto calórico (METs) e pressão de pneus.
+              <p className="text-xs text-[#1a1a1a]/60 mb-2">
+                Usado para o cálculo fisiológico de calorias (METs) e calibragem de pneus.
               </p>
               <input
                 type="number"
                 value={preferences.userWeightKg}
                 onChange={(e) => onUpdatePreferences({ userWeightKg: Number(e.target.value) })}
-                className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm font-mono text-slate-100 focus:outline-none focus:border-emerald-500"
+                className="w-full p-3 rounded-2xl bg-[#f8f7f4] border border-[#1a1a1a]/10 text-sm font-mono-numbers text-[#1a1a1a] focus:outline-none focus:border-[#2c52a1]"
               />
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-300 block mb-1">
-                Peso da Bicicleta (kg)
+              <label className="meta text-[10px] text-[#1a1a1a]/60 block mb-1 font-bold">
+                PESO DA BICICLETA COM ACESSÓRIOS (KG)
               </label>
               <input
                 type="number"
                 value={preferences.bikeWeightKg}
                 onChange={(e) => onUpdatePreferences({ bikeWeightKg: Number(e.target.value) })}
-                className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm font-mono text-slate-100 focus:outline-none focus:border-emerald-500"
+                className="w-full p-3 rounded-2xl bg-[#f8f7f4] border border-[#1a1a1a]/10 text-sm font-mono-numbers text-[#1a1a1a] focus:outline-none focus:border-[#2c52a1]"
               />
             </div>
           </div>
@@ -304,7 +309,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         {/* Action Button */}
         <button
           onClick={onClose}
-          className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-colors shadow-md"
+          className="w-full py-3 rounded-full bg-[#2c52a1] hover:bg-[#234285] text-white font-mono-numbers uppercase text-xs font-bold transition-colors shadow-xs cursor-pointer"
         >
           Salvar Configurações
         </button>

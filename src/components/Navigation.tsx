@@ -11,8 +11,7 @@ import {
   Settings,
   Bluetooth,
   BatteryCharging,
-  Trophy,
-  Award
+  Trophy
 } from 'lucide-react';
 import { HeartRateSensor } from '../types';
 
@@ -48,8 +47,8 @@ export const Navigation: React.FC<NavigationProps> = ({
 }) => {
   const navItems: { key: MainTab; label: string; icon: React.FC<{ className?: string }> }[] = [
     { key: 'pedal', label: 'Pedalar (GPS)', icon: Gauge },
-    { key: 'bike3d', label: 'Bicicleta 3D', icon: Layers },
-    { key: 'cuidados', label: 'Cuidados & Oficina', icon: Wrench },
+    { key: 'bike3d', label: 'Oficina 3D', icon: Layers },
+    { key: 'cuidados', label: 'Cuidados & Peças', icon: Wrench },
     { key: 'historico', label: 'Histórico & Relatórios', icon: History },
     { key: 'oficinas', label: 'Assistência Técnica', icon: MapPin },
     { key: 'marcas', label: 'Marcas & Specs', icon: Tag },
@@ -57,34 +56,34 @@ export const Navigation: React.FC<NavigationProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/90">
+    <header className="sticky top-0 z-40 bg-[#f8f7f4]/95 backdrop-blur-md border-b border-[#1a1a1a]/10 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Top Header Row */}
-        <div className="flex items-center justify-between h-16 gap-4">
-          {/* Brand Logo */}
+        <div className="flex items-center justify-between h-18 gap-4">
+          {/* Brand Logo - Variation 3 Style */}
           <div
             onClick={() => onSelectTab('pedal')}
-            className="flex items-center gap-2.5 cursor-pointer group select-none"
+            className="flex items-center gap-3 cursor-pointer group select-none shrink-0"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-slate-950 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-              <Bike className="w-6 h-6 stroke-[2.2]" />
+            <div className="w-9 h-9 rounded-full bg-[#2c52a1] text-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+              <Bike className="w-5 h-5 stroke-[2]" />
             </div>
             <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-lg sm:text-xl tracking-tight text-white">
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-serif-display text-2xl font-bold tracking-tight text-[#1a1a1a]">
                   CicloTrack
                 </span>
-                <span className="text-[10px] uppercase font-black px-1.5 py-0.5 rounded bg-emerald-500 text-slate-950 tracking-wider">
-                  PRO
+                <span className="font-serif-display italic text-lg font-semibold text-[#2c52a1]">
+                  Pro
                 </span>
               </div>
-              <span className="text-[10px] text-slate-400 font-medium block -mt-0.5">
-                GPS • Sensor BLE • Oficina 3D
+              <span className="meta block -mt-1 text-[#1a1a1a]/50 text-[10px]">
+                TELEMETRIA & OFICINA 3D
               </span>
             </div>
           </div>
 
-          {/* Desktop Tab Bar */}
+          {/* Desktop Nav Items */}
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -94,64 +93,64 @@ export const Navigation: React.FC<NavigationProps> = ({
                   key={item.key}
                   id={`nav-tab-${item.key}`}
                   onClick={() => onSelectTab(item.key)}
-                  className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+                  className={`px-3 py-2 rounded-full text-xs font-medium flex items-center gap-1.5 transition-all ${
                     isActive
-                      ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-900'
+                      ? 'bg-[#2c52a1] text-white shadow-sm font-semibold'
+                      : 'text-[#1a1a1a]/70 hover:text-[#1a1a1a] hover:bg-[#1a1a1a]/5'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'stroke-[2.5]' : ''}`} />
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'stroke-[2.5]' : 'stroke-[1.75]'}`} />
                   <span>{item.label}</span>
                 </button>
               );
             })}
           </nav>
 
-          {/* Right Header Controls */}
+          {/* Right Header Technical Controls - Variation 3 Pill Style */}
           <div className="flex items-center gap-2">
             {/* Heart Rate quick status */}
             <button
               onClick={onOpenBluetoothModal}
-              className={`p-2 rounded-xl border flex items-center gap-1.5 text-xs font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-full border text-xs font-mono-numbers flex items-center gap-1.5 transition-all ${
                 sensor.connected
-                  ? 'bg-rose-500/15 text-rose-300 border-rose-500/30'
-                  : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+                  ? 'bg-rose-50 text-rose-700 border-rose-200 shadow-sm'
+                  : 'bg-white text-[#1a1a1a]/70 border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20'
               }`}
               title="Sensor Bluetooth"
             >
-              <Bluetooth className={`w-4 h-4 ${sensor.connected ? 'text-rose-400' : ''}`} />
-              <span className="hidden sm:inline font-mono">
-                {sensor.connected ? `${sensor.bpm} BPM` : 'BLE'}
+              <Bluetooth className={`w-3.5 h-3.5 ${sensor.connected ? 'text-rose-600 animate-pulse' : 'text-[#1a1a1a]/40'}`} />
+              <span className="meta-dark">
+                {sensor.connected ? `${sensor.bpm} BPM` : 'BLE: OFF'}
               </span>
             </button>
 
-            {/* Battery Saver Mode */}
+            {/* Battery Saver Mode Toggle */}
             <button
               onClick={onToggleBatterySaver}
-              className={`p-2 rounded-xl border flex items-center gap-1.5 text-xs font-semibold transition-all ${
+              className={`p-2 rounded-full border transition-all ${
                 batterySaver
-                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                  : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+                  ? 'bg-amber-100 text-amber-900 border-amber-300 shadow-sm'
+                  : 'bg-white text-[#1a1a1a]/70 border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20'
               }`}
               title="Modo Economia de Bateria"
             >
-              <BatteryCharging className="w-4 h-4" />
+              <BatteryCharging className="w-3.5 h-3.5" />
             </button>
 
             {/* Settings Trigger */}
             <button
               id="btn-open-settings"
               onClick={onOpenSettings}
-              className="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800 transition-colors"
-              title="Configurações e Temas"
+              className="p-2 rounded-full bg-white text-[#1a1a1a]/70 hover:text-[#1a1a1a] border border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20 transition-colors"
+              title="Configurações e Perfil"
             >
-              <Settings className="w-4 h-4" />
+              <Settings className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
         {/* Mobile Scrollable Tab Bar */}
-        <div className="lg:hidden flex items-center gap-1.5 overflow-x-auto py-2.5 scrollbar-none border-t border-slate-900">
+        <div className="lg:hidden flex items-center gap-1.5 overflow-x-auto py-2.5 scrollbar-none border-t border-[#1a1a1a]/10">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.key;
@@ -159,10 +158,10 @@ export const Navigation: React.FC<NavigationProps> = ({
               <button
                 key={item.key}
                 onClick={() => onSelectTab(item.key)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap flex items-center gap-1.5 transition-all ${
+                className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap flex items-center gap-1.5 transition-all ${
                   isActive
-                    ? 'bg-emerald-500 text-slate-950'
-                    : 'text-slate-400 hover:text-slate-200 bg-slate-900/60'
+                    ? 'bg-[#2c52a1] text-white font-semibold'
+                    : 'text-[#1a1a1a]/70 bg-white border border-[#1a1a1a]/10 hover:bg-[#1a1a1a]/5'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />

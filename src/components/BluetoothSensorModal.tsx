@@ -112,39 +112,44 @@ export const BluetoothSensorModal: React.FC<BluetoothSensorModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-5">
+    <div className="fixed inset-0 z-50 bg-[#1a1a1a]/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div className="bg-white border border-[#1a1a1a]/10 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-5">
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center">
+        <div className="flex items-center justify-between pb-4 border-b border-[#1a1a1a]/10">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-[#f8f7f4] border border-[#1a1a1a]/10 text-[#2c52a1] flex items-center justify-center">
               <Bluetooth className="w-4 h-4" />
             </div>
-            <h4 className="font-bold text-slate-100 text-base">
-              Sensor Cardíaco Bluetooth
-            </h4>
+            <div>
+              <h4 className="font-serif-display text-xl font-bold text-[#1a1a1a]">
+                Sensor Cardíaco Bluetooth
+              </h4>
+              <p className="meta text-[10px] text-[#1a1a1a]/50">
+                SINCRONIZAÇÃO BLE & TELEMETRIA BPM
+              </p>
+            </div>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-200 text-sm font-bold p-1"
+            className="text-[#1a1a1a]/40 hover:text-[#1a1a1a] text-lg font-bold p-1 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Current Connection Status */}
-        <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
+        <div className="p-4 sm:p-5 rounded-2xl bg-[#f8f7f4] border border-[#1a1a1a]/10 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Heart
               className={`w-8 h-8 ${
-                sensor.connected ? 'text-rose-500 animate-pulse' : 'text-slate-600'
+                sensor.connected ? 'text-rose-600 animate-pulse fill-rose-600' : 'text-[#1a1a1a]/30'
               }`}
             />
             <div>
-              <span className="text-xs text-slate-400 block">Status de Conexão</span>
-              <span className="font-bold text-sm text-slate-100">
+              <span className="meta text-[10px] text-[#1a1a1a]/50 block">STATUS DE CONEXÃO</span>
+              <span className="font-bold text-sm text-[#1a1a1a]">
                 {sensor.connected
-                  ? `${sensor.deviceName} (${sensor.isSimulated ? 'Simulador' : 'BLE Real'})`
+                  ? `${sensor.deviceName} (${sensor.isSimulated ? 'Simulado' : 'BLE Real'})`
                   : 'Nenhum sensor conectado'}
               </span>
             </div>
@@ -152,11 +157,11 @@ export const BluetoothSensorModal: React.FC<BluetoothSensorModalProps> = ({
 
           {sensor.connected && (
             <div className="text-right">
-              <div className="font-mono text-xl font-bold text-rose-400">
-                {sensor.bpm} <span className="text-xs text-slate-400">BPM</span>
+              <div className="font-mono-numbers text-xl font-bold text-[#1a1a1a]">
+                {sensor.bpm} <span className="meta text-[10px] text-[#1a1a1a]/50">BPM</span>
               </div>
-              <div className="flex items-center gap-1 text-[11px] text-slate-400 justify-end">
-                <Battery className="w-3 h-3 text-emerald-400" />
+              <div className="flex items-center gap-1 meta text-[10px] text-[#1a1a1a]/60 justify-end">
+                <Battery className="w-3 h-3 text-[#2c52a1]" />
                 <span>{sensor.batteryLevel}%</span>
               </div>
             </div>
@@ -164,7 +169,7 @@ export const BluetoothSensorModal: React.FC<BluetoothSensorModalProps> = ({
         </div>
 
         {statusMessage && (
-          <p className="text-xs text-amber-400 bg-amber-950/30 p-2.5 rounded-lg border border-amber-800/40">
+          <p className="meta text-[10px] text-[#2c52a1] bg-blue-50 p-3 rounded-2xl border border-blue-200">
             {statusMessage}
           </p>
         )}
@@ -173,31 +178,31 @@ export const BluetoothSensorModal: React.FC<BluetoothSensorModalProps> = ({
         <button
           onClick={connectRealBluetooth}
           disabled={isScanning}
-          className="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-rose-900/30 transition-all disabled:opacity-50"
+          className="w-full py-3 rounded-full bg-[#2c52a1] hover:bg-[#234285] text-white font-mono-numbers uppercase font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-all disabled:opacity-50 cursor-pointer"
         >
           <Bluetooth className={`w-4 h-4 ${isScanning ? 'animate-spin' : ''}`} />
           {isScanning ? 'Buscando Sensores BLE...' : 'Buscar Sensor Bluetooth (Web BLE)'}
         </button>
 
         {/* Virtual Simulators Presets */}
-        <div className="space-y-2 pt-2 border-t border-slate-800">
-          <span className="text-[11px] text-slate-400 block font-semibold uppercase tracking-wider">
-            Ou Conectar Dispositivo Virtual / Teste:
+        <div className="space-y-2 pt-2 border-t border-[#1a1a1a]/10">
+          <span className="meta text-[10px] text-[#1a1a1a]/60 block font-bold">
+            OU CONECTAR DISPOSITIVO VIRTUAL / TESTE:
           </span>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2.5">
             <button
               onClick={() => connectSimulated('Polar H10 Cinta Peitoral')}
-              className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium text-left transition-colors flex items-center justify-between"
+              className="p-3 rounded-2xl bg-[#f8f7f4] hover:bg-[#eae8e3] text-[#1a1a1a] border border-[#1a1a1a]/10 text-xs font-mono-numbers text-left transition-colors flex items-center justify-between cursor-pointer"
             >
               <span>Polar H10</span>
-              <Radio className="w-3.5 h-3.5 text-cyan-400" />
+              <Radio className="w-3.5 h-3.5 text-[#2c52a1]" />
             </button>
             <button
               onClick={() => connectSimulated('Garmin HRM-Pro Plus')}
-              className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium text-left transition-colors flex items-center justify-between"
+              className="p-3 rounded-2xl bg-[#f8f7f4] hover:bg-[#eae8e3] text-[#1a1a1a] border border-[#1a1a1a]/10 text-xs font-mono-numbers text-left transition-colors flex items-center justify-between cursor-pointer"
             >
               <span>Garmin HRM-Pro</span>
-              <Radio className="w-3.5 h-3.5 text-indigo-400" />
+              <Radio className="w-3.5 h-3.5 text-[#2c52a1]" />
             </button>
           </div>
         </div>
@@ -206,7 +211,7 @@ export const BluetoothSensorModal: React.FC<BluetoothSensorModalProps> = ({
         {sensor.connected && (
           <button
             onClick={disconnect}
-            className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-rose-400 border border-slate-700 text-xs font-bold transition-colors"
+            className="w-full py-2.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-mono-numbers uppercase text-xs font-bold transition-colors cursor-pointer"
           >
             Desconectar Sensor
           </button>

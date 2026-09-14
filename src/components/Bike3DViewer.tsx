@@ -25,7 +25,7 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
 }) => {
   const mountRef = useRef<HTMLDivElement>(null);
   const [selectedPartKey, setSelectedPartKey] = useState<string>('frame');
-  const [frameColor, setFrameColor] = useState<string>('#10b981'); // Emerald
+  const [frameColor, setFrameColor] = useState<string>('#2c52a1'); // Cobalt Blue (Variation 3)
   const [wireframeMode, setWireframeMode] = useState<boolean>(false);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
 
@@ -37,12 +37,12 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
 
   // Colors available for customization
   const colorOptions = [
-    { name: 'Verde Esmeralda', hex: '#10b981' },
-    { name: 'Preto Fosco Stealth', hex: '#1e293b' },
-    { name: 'Azul Cobalto Elétrico', hex: '#2563eb' },
-    { name: 'Laranja Sunset', hex: '#f97316' },
-    { name: 'Titânio Metálico', hex: '#94a3b8' },
-    { name: 'Vermelho Corrida', hex: '#ef4444' }
+    { name: 'Azul Cobalto Clássico', hex: '#2c52a1' },
+    { name: 'Preto Fosco Stealth', hex: '#1a1a1a' },
+    { name: 'Verde Corrida', hex: '#15803d' },
+    { name: 'Laranja Sunset', hex: '#ea580c' },
+    { name: 'Titânio Metálico', hex: '#71717a' },
+    { name: 'Vermelho Gran Fondo', hex: '#dc2626' }
   ];
 
   const partDetailsMap: Record<
@@ -94,7 +94,7 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
     // Scene
     const scene = new THREE.Scene();
     sceneRef.current = scene;
-    scene.background = new THREE.Color(0x0a0f1d);
+    scene.background = new THREE.Color(0xf5f4f0);
 
     // Camera
     const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
@@ -111,30 +111,30 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
     container.appendChild(renderer.domElement);
 
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
     scene.add(ambientLight);
 
-    const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.8);
+    const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.5);
     dirLight1.position.set(5, 8, 5);
     dirLight1.castShadow = true;
     scene.add(dirLight1);
 
-    const dirLight2 = new THREE.DirectionalLight(0x38bdf8, 1.0);
+    const dirLight2 = new THREE.DirectionalLight(0xe2e8f0, 0.8);
     dirLight2.position.set(-5, 4, -4);
     scene.add(dirLight2);
 
-    const rimLight = new THREE.PointLight(0x10b981, 1.5, 10);
+    const rimLight = new THREE.PointLight(0x2c52a1, 1.2, 10);
     rimLight.position.set(0, 3, -2);
     scene.add(rimLight);
 
     // Grid Floor
-    const gridHelper = new THREE.GridHelper(6, 24, 0x334155, 0x1e293b);
+    const gridHelper = new THREE.GridHelper(6, 24, 0xd4d2cc, 0xe8e7e3);
     gridHelper.position.y = -0.75;
     scene.add(gridHelper);
 
     // Ground Shadow Catcher
     const planeGeo = new THREE.PlaneGeometry(8, 8);
-    const planeMat = new THREE.ShadowMaterial({ opacity: 0.35 });
+    const planeMat = new THREE.ShadowMaterial({ opacity: 0.15 });
     const groundPlane = new THREE.Mesh(planeGeo, planeMat);
     groundPlane.rotation.x = -Math.PI / 2;
     groundPlane.position.y = -0.751;
@@ -527,60 +527,60 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
   };
 
   return (
-    <div id="bike-3d-section" className="bg-slate-900 border border-slate-800/80 rounded-2xl overflow-hidden shadow-2xl relative">
-      {/* Top Header Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-4 border-b border-slate-800/80 bg-slate-950/60 backdrop-blur-sm z-10">
+    <div id="bike-3d-section" className="bg-white border border-[#1a1a1a]/10 rounded-3xl overflow-hidden shadow-xs relative">
+      {/* Top Header Controls - Variation 3 Style */}
+      <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-4 border-b border-[#1a1a1a]/10 bg-[#f8f7f4]/90 backdrop-blur-sm z-10">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-            <Sparkles className="w-5 h-5" />
+          <div className="w-9 h-9 rounded-full bg-[#2c52a1] text-white flex items-center justify-center shadow-xs">
+            <Sparkles className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="font-bold text-slate-100 text-base sm:text-lg flex items-center gap-2">
-              Bicicleta 3D Interativa
-              <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
-                Inspeção Digital
+            <h3 className="font-serif-display text-xl sm:text-2xl font-bold text-[#1a1a1a] flex items-center gap-2.5">
+              Oficina 3D Interativa
+              <span className="meta text-[#2c52a1] text-[10px] px-2.5 py-0.5 rounded-full bg-white border border-[#2c52a1]/20 font-bold">
+                DIAGNÓSTICO DIGITAL
               </span>
             </h3>
-            <p className="text-xs text-slate-400">
-              Gire com o mouse ou toque para inspecionar os pontos críticos de manutenção
+            <p className="text-xs text-[#1a1a1a]/60 mt-0.5">
+              Arraste para girar em 360° e inspecione o desgaste de componentes críticos
             </p>
           </div>
         </div>
 
         {/* Action buttons */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-2">
           <button
             id="btn-auto-rotate"
             onClick={() => setAutoRotate(!autoRotate)}
-            className={`p-2 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 border ${
+            className={`px-3 py-1.5 rounded-full text-xs font-mono-numbers transition-all flex items-center gap-1.5 border ${
               autoRotate
-                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
-                : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-slate-200'
+                ? 'bg-[#2c52a1] text-white border-[#2c52a1] shadow-xs'
+                : 'bg-white text-[#1a1a1a]/70 border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20'
             }`}
             title="Giro Automático"
           >
             <RotateCw className={`w-3.5 h-3.5 ${autoRotate ? 'animate-spin' : ''}`} />
-            <span className="hidden sm:inline">{autoRotate ? 'Giro Ativo' : 'Pausado'}</span>
+            <span className="meta-dark">{autoRotate ? 'GIRO ATIVO' : 'PAUSADO'}</span>
           </button>
 
           <button
             id="btn-wireframe-mode"
             onClick={() => setWireframeMode(!wireframeMode)}
-            className={`p-2 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 border ${
+            className={`px-3 py-1.5 rounded-full text-xs font-mono-numbers transition-all flex items-center gap-1.5 border ${
               wireframeMode
-                ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30'
-                : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-slate-200'
+                ? 'bg-[#2c52a1] text-white border-[#2c52a1] shadow-xs'
+                : 'bg-white text-[#1a1a1a]/70 border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20'
             }`}
             title="Modo Raio-X Wireframe"
           >
             <Layers className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Raio-X</span>
+            <span className="meta-dark">RAIO-X</span>
           </button>
 
           <button
             id="btn-reset-view"
             onClick={resetView}
-            className="p-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-colors"
+            className="p-2 rounded-full text-xs bg-white text-[#1a1a1a]/70 border border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20 transition-colors"
             title="Centralizar Câmera"
           >
             <Maximize2 className="w-3.5 h-3.5" />
@@ -588,8 +588,8 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
         </div>
       </div>
 
-      {/* Main 3D Canvas Canvas Viewport */}
-      <div className="relative h-[360px] sm:h-[440px] w-full cursor-grab active:cursor-grabbing">
+      {/* Main 3D Canvas Viewport */}
+      <div className="relative h-[360px] sm:h-[440px] w-full cursor-grab active:cursor-grabbing bg-[#f5f4f0]">
         <div ref={mountRef} className="w-full h-full" />
 
         {/* Hotspot Pills overlay */}
@@ -610,36 +610,36 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
                     onSelectComponent(matchingComp);
                   }
                 }}
-                className={`text-xs px-2.5 py-1.5 rounded-lg font-medium transition-all backdrop-blur-md flex items-center gap-1.5 border shadow-lg ${
+                className={`text-xs px-3 py-1 rounded-full font-mono-numbers transition-all flex items-center gap-1.5 border shadow-xs ${
                   isSelected
-                    ? 'bg-emerald-500 text-slate-950 font-bold border-emerald-400 scale-105'
-                    : 'bg-slate-950/80 text-slate-300 border-slate-700 hover:bg-slate-800'
+                    ? 'bg-[#2c52a1] text-white font-bold border-[#2c52a1] scale-105'
+                    : 'bg-white/90 text-[#1a1a1a] border-[#1a1a1a]/10 hover:bg-white'
                 }`}
               >
                 {isCritical ? (
-                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-rose-600 animate-pulse" />
                 ) : isAttention ? (
-                  <span className="w-2 h-2 rounded-full bg-amber-400" />
+                  <span className="w-2 h-2 rounded-full bg-amber-500" />
                 ) : (
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 )}
-                {part.title.split(' ')[0]}
+                <span className="meta-dark uppercase">{part.title.split(' ')[0]}</span>
               </button>
             );
           })}
         </div>
 
         {/* Frame Color Picker Floating Widget */}
-        <div className="absolute bottom-4 left-4 bg-slate-950/85 backdrop-blur-md p-2.5 rounded-xl border border-slate-800 shadow-xl flex items-center gap-2">
-          <Palette className="w-4 h-4 text-slate-400" />
-          <span className="text-[11px] text-slate-400 font-medium hidden sm:inline">Cor do Quadro:</span>
+        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md p-2.5 rounded-full border border-[#1a1a1a]/10 shadow-md flex items-center gap-2.5">
+          <Palette className="w-4 h-4 text-[#2c52a1]" />
+          <span className="meta text-[#1a1a1a]/70 hidden sm:inline">COR DO QUADRO:</span>
           <div className="flex items-center gap-1.5">
             {colorOptions.map((opt) => (
               <button
                 key={opt.hex}
                 onClick={() => setFrameColor(opt.hex)}
                 className={`w-5 h-5 rounded-full border-2 transition-transform ${
-                  frameColor === opt.hex ? 'scale-125 border-white shadow-md' : 'border-transparent hover:scale-110'
+                  frameColor === opt.hex ? 'scale-125 border-[#1a1a1a] shadow-xs' : 'border-transparent hover:scale-110'
                 }`}
                 style={{ backgroundColor: opt.hex }}
                 title={opt.name}
@@ -650,42 +650,42 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
       </div>
 
       {/* Selected Part Technical Card Footer */}
-      <div className="p-4 sm:p-5 bg-slate-950/90 border-t border-slate-800">
+      <div className="p-5 sm:p-6 bg-white border-t border-[#1a1a1a]/10">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <h4 className="font-bold text-slate-100 text-sm sm:text-base">
+            <div className="flex items-center gap-2.5">
+              <h4 className="font-serif-display text-lg sm:text-xl font-bold text-[#1a1a1a]">
                 {partDetailsMap[selectedPartKey]?.title}
               </h4>
               {currentCompData && (
                 <span
-                  className={`text-[11px] px-2 py-0.5 rounded-full font-semibold border ${
+                  className={`text-[11px] px-2.5 py-0.5 rounded-full font-mono-numbers font-semibold border ${
                     currentCompData.status === 'otimo'
-                      ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                      ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
                       : currentCompData.status === 'atencao'
-                      ? 'bg-amber-500/10 text-amber-400 border-amber-500/30'
-                      : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
+                      ? 'bg-amber-50 text-amber-800 border-amber-200'
+                      : 'bg-rose-50 text-rose-800 border-rose-200'
                   }`}
                 >
                   {currentCompData.status === 'otimo'
-                    ? '100% Saudável'
+                    ? '100% SAUDÁVEL'
                     : currentCompData.status === 'atencao'
-                    ? 'Atenção Necessária'
-                    : 'Troca Urgente'}
+                    ? 'ATENÇÃO RECOMENDADA'
+                    : 'SUBSTITUIÇÃO URGENTE'}
                 </span>
               )}
             </div>
-            <p className="text-xs text-slate-300">
+            <p className="text-xs text-[#1a1a1a]/70 max-w-2xl">
               {currentCompData?.tips || partDetailsMap[selectedPartKey]?.desc}
             </p>
           </div>
 
           {currentCompData && (
-            <div className="flex items-center gap-3 self-end sm:self-center shrink-0">
+            <div className="flex items-center gap-4 self-end sm:self-center shrink-0">
               <div className="text-right">
-                <span className="text-[11px] text-slate-400 block">Uso Acumulado</span>
-                <span className="font-mono text-sm font-bold text-emerald-400">
-                  {currentCompData.currentKm} km / {currentCompData.maxRecommendedKm} km
+                <span className="meta text-[#1a1a1a]/60 block text-[10px]">USO ACUMULADO</span>
+                <span className="font-mono-numbers text-sm font-bold text-[#1a1a1a]">
+                  {currentCompData.currentKm} KM / {currentCompData.maxRecommendedKm} KM
                 </span>
               </div>
               <button
@@ -696,7 +696,7 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
                     careSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition-colors"
+                className="px-4 py-2 rounded-full bg-[#2c52a1] hover:bg-[#234285] text-white font-mono-numbers text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer uppercase tracking-wider"
               >
                 <Wrench className="w-3.5 h-3.5" />
                 Registrar Revisão

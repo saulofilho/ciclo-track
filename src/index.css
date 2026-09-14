@@ -1,49 +1,82 @@
 @import "tailwindcss";
 
 @layer base {
-  body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  :root {
+    --bg: #f8f7f4;
+    --ink: #1a1a1a;
+    --accent: #2c52a1;
+    --ink-faint: rgba(26, 26, 26, 0.08);
+    --ink-muted: rgba(26, 26, 26, 0.5);
   }
-  .font-mono-numbers {
-    font-family: 'JetBrains Mono', monospace;
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .font-serif-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .font-mono-numbers, .font-space-mono {
+    font-family: 'Space Mono', monospace;
     font-feature-settings: "tnum" 1;
+  }
+
+  .meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+  }
+
+  .meta-dark {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink);
   }
 }
 
-/* Custom scrollbar */
+/* Custom minimal scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(26, 26, 26, 0.04);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(71, 85, 105, 0.6);
+  background: rgba(26, 26, 26, 0.2);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.8);
+  background: rgba(26, 26, 26, 0.4);
 }
 
-/* Leaflet dark theme tweaks */
+/* Leaflet clean styling */
 .leaflet-container {
   width: 100%;
   height: 100%;
-  background: #090d16 !important;
+  background: #f1f0ec !important;
   font-family: inherit;
 }
-.dark-tiles {
-  filter: brightness(0.7) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+.clean-tiles {
+  filter: contrast(1.02) saturate(0.9);
 }
 .leaflet-popup-content-wrapper {
-  background: #0f172a !important;
-  color: #f8fafc !important;
+  background: #ffffff !important;
+  color: #1a1a1a !important;
   border-radius: 12px !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(26, 26, 26, 0.1) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+  font-family: 'Inter', sans-serif !important;
 }
 .leaflet-popup-tip {
-  background: #0f172a !important;
+  background: #ffffff !important;
 }
 

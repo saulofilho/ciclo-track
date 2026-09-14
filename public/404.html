@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>CicloTrack Pro - Redirecionando...</title>
+    <script>
+      // Single Page Apps for GitHub Pages
+      // Redireciona qualquer rota não encontrada para a raiz preservando o caminho na query string
+      const segmentCount = 1;
+      const l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +
+        l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body style="font-family: sans-serif; text-align: center; padding: 50px; background-color: #f8f7f4; color: #1a1a1a;">
+    <h2>Carregando CicloTrack Pro...</h2>
+    <p>Redirecionando para a aplicação...</p>
+  </body>
+</html>
