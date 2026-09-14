@@ -161,6 +161,8 @@ npm run deploy
 | Sintoma / Erro | Causa Comum | Como o projeto já resolve |
 |---|---|---|
 | **Tela branca após deploy (Failed to load resource: 404)** | O Vite gerou caminhos absolutos (`/assets/index.js`) em vez de relativos ao subdiretório do repositório. | No `vite.config.ts`, a propriedade `base` está definida como `process.env.VITE_BASE_URL \|\| './'`, garantindo caminhos relativos perfeitos em qualquer repositório. |
+| **Erro `Dependencies lock file is not found`** | A action `setup-node` procurava `package-lock.json` ausente no repositório. | Corrigido removendo o cache forçado de lockfile no workflow e utilizando `npm install` resiliente. |
+| **Aviso `Node 20 is being deprecated`** | O GitHub Actions está migrando runners para versões modernas. | O workflow foi atualizado para **Node.js 22 LTS**, eliminando avisos de descontinuação. |
 | **Erro de permissão no Actions: `Permission denied to github-actions[bot]`** | As permissões do token do repositório estão como somente leitura. | O workflow `.github/workflows/deploy.yml` declara explicitamente `permissions: { pages: write, id-token: write, contents: read }`. Se necessário, confirme em **Settings > Actions > General > Workflow permissions** marcando *"Read and write permissions"*. |
 | **Erro 404 ao atualizar página** | GitHub Pages procura um arquivo físico para a rota. | O arquivo `/public/404.html` captura requisições de rotas e redireciona de volta para o app sem perder o contexto. |
 | **Conflito de builds simultâneos** | Múltiplos commits rápidos geram concorrência. | O workflow usa `concurrency: { group: 'pages', cancel-in-progress: true }`. |

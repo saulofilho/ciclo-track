@@ -158,6 +158,8 @@ export type AppTheme = 'stealth' | 'neon' | 'forest' | 'sunset' | 'amoled';
 
 export interface UserPreferences {
   theme: AppTheme;
+  darkMode: boolean;
+  highContrastDark?: boolean;
   batterySaver: boolean;
   soundAlerts: boolean;
   pushNotifications: boolean;

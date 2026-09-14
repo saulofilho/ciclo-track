@@ -56,23 +56,73 @@ export default function App() {
   const [activeChallenge, setActiveChallenge] = useState<LiveChallenge | undefined>(undefined);
 
   // Settings & Preferences
-  const [preferences, setPreferences] = useState<UserPreferences>({
-    theme: 'stealth',
-    batterySaver: false,
-    soundAlerts: true,
-    pushNotifications: false,
-    userWeightKg: 72,
-    bikeWeightKg: 8.5,
-    dashboardMetrics: ['speed', 'distance', 'time', 'calories', 'elevation', 'hr'],
-    activeWearables: {
-      strava: true,
-      garmin: true,
-      appleHealth: false,
-      wahoo: false,
-      polar: false
-    },
-    offlineMapDownloaded: true
+  const [preferences, setPreferences] = useState<UserPreferences>(() => {
+    try {
+      const saved = localStorage.getItem('ciclotrack_preferences');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return {
+          theme: parsed.theme || 'stealth',
+          darkMode: parsed.darkMode ?? false,
+          highContrastDark: parsed.highContrastDark ?? true,
+          batterySaver: parsed.batterySaver ?? false,
+          soundAlerts: parsed.soundAlerts ?? true,
+          pushNotifications: parsed.pushNotifications ?? false,
+          userWeightKg: parsed.userWeightKg || 72,
+          bikeWeightKg: parsed.bikeWeightKg || 8.5,
+          dashboardMetrics: parsed.dashboardMetrics || ['speed', 'distance', 'time', 'calories', 'elevation', 'hr'],
+          activeWearables: parsed.activeWearables || {
+            strava: true,
+            garmin: true,
+            appleHealth: false,
+            wahoo: false,
+            polar: false
+          },
+          offlineMapDownloaded: parsed.offlineMapDownloaded ?? true
+        };
+      }
+    } catch (e) {}
+
+    return {
+      theme: 'stealth',
+      darkMode: false,
+      highContrastDark: true,
+      batterySaver: false,
+      soundAlerts: true,
+      pushNotifications: false,
+      userWeightKg: 72,
+      bikeWeightKg: 8.5,
+      dashboardMetrics: ['speed', 'distance', 'time', 'calories', 'elevation', 'hr'],
+      activeWearables: {
+        strava: true,
+        garmin: true,
+        appleHealth: false,
+        wahoo: false,
+        polar: false
+      },
+      offlineMapDownloaded: true
+    };
   });
+
+  // Synchronize Dark Mode & Theme class to documentElement
+  useEffect(() => {
+    const isDark = preferences.darkMode || preferences.theme === 'amoled' || preferences.batterySaver;
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    if (preferences.theme === 'amoled' || preferences.batterySaver) {
+      document.documentElement.classList.add('amoled');
+    } else {
+      document.documentElement.classList.remove('amoled');
+    }
+
+    try {
+      localStorage.setItem('ciclotrack_preferences', JSON.stringify(preferences));
+    } catch (e) {}
+  }, [preferences.darkMode, preferences.theme, preferences.batterySaver]);
 
   // Modals
   const [showBluetoothModal, setShowBluetoothModal] = useState(false);
@@ -147,12 +197,13 @@ export default function App() {
 
   const unlockedAchievementsCount = achievements.filter((a) => a.unlocked).length;
 
-  // Theme wrapper styling - Variation 3 architectural linen
+  // Theme wrapper styling
   const getThemeClass = () => {
-    if (preferences.batterySaver) return 'bg-black text-white';
+    if (preferences.batterySaver || preferences.theme === 'amoled') return 'bg-black text-white';
+    if (preferences.darkMode) {
+      return 'bg-[#0b0f17] text-[#f0f6fc]';
+    }
     switch (preferences.theme) {
-      case 'amoled':
-        return 'bg-black text-white';
       case 'neon':
         return 'bg-slate-950 text-cyan-50';
       case 'forest':
@@ -176,6 +227,10 @@ export default function App() {
         batterySaver={preferences.batterySaver}
         onToggleBatterySaver={() =>
           setPreferences((p) => ({ ...p, batterySaver: !p.batterySaver }))
+        }
+        darkMode={preferences.darkMode}
+        onToggleDarkMode={() =>
+          setPreferences((p) => ({ ...p, darkMode: !p.darkMode }))
         }
         onOpenSettings={() => setShowSettingsModal(true)}
         unlockedAchievementsCount={unlockedAchievementsCount}

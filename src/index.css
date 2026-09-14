@@ -7,6 +7,17 @@
     --accent: #2c52a1;
     --ink-faint: rgba(26, 26, 26, 0.08);
     --ink-muted: rgba(26, 26, 26, 0.5);
+    color-scheme: light;
+  }
+
+  html.dark,
+  :root.dark {
+    --bg: #0b0f17;
+    --ink: #f0f6fc;
+    --accent: #4c82f7;
+    --ink-faint: rgba(255, 255, 255, 0.12);
+    --ink-muted: rgba(240, 246, 252, 0.65);
+    color-scheme: dark;
   }
 
   body {
@@ -14,6 +25,7 @@
     color: var(--ink);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   .font-serif-display {
@@ -79,4 +91,219 @@
 .leaflet-popup-tip {
   background: #ffffff !important;
 }
+
+/* ==========================================================================
+   HIGH-CONTRAST NOCTURNAL DARK MODE ENGINE
+   Optimized for nighttime road & trail visibility, low eye strain and AMOLED power saving
+   ========================================================================== */
+
+html.dark body {
+  background-color: #0b0f17;
+  color: #f0f6fc;
+}
+
+/* Scrollbars in Dark Mode */
+html.dark ::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Surfaces & Containers */
+html.dark .bg-white {
+  background-color: #151c28 !important;
+}
+html.dark .bg-white\/95 {
+  background-color: rgba(21, 28, 40, 0.95) !important;
+}
+html.dark .bg-white\/90 {
+  background-color: rgba(21, 28, 40, 0.90) !important;
+}
+html.dark .bg-white\/80 {
+  background-color: rgba(21, 28, 40, 0.80) !important;
+}
+
+/* Secondary Backgrounds & Cards */
+html.dark .bg-\[\#f8f7f4\] {
+  background-color: #101520 !important;
+}
+html.dark .bg-\[\#f8f7f4\]\/20 {
+  background-color: rgba(16, 21, 32, 0.3) !important;
+}
+html.dark .bg-\[\#f8f7f4\]\/40 {
+  background-color: rgba(16, 21, 32, 0.5) !important;
+}
+html.dark .bg-\[\#f8f7f4\]\/60 {
+  background-color: rgba(16, 21, 32, 0.7) !important;
+}
+html.dark .bg-\[\#f8f7f4\]\/80 {
+  background-color: rgba(16, 21, 32, 0.85) !important;
+}
+html.dark .bg-\[\#f8f7f4\]\/90 {
+  background-color: rgba(16, 21, 32, 0.92) !important;
+}
+html.dark .bg-\[\#f8f7f4\]\/95 {
+  background-color: rgba(11, 15, 23, 0.95) !important;
+}
+
+/* High Contrast Nocturnal Typography */
+html.dark .text-\[\#1a1a1a\] {
+  color: #f0f6fc !important;
+}
+html.dark .text-\[\#1a1a1a\]\/70 {
+  color: #cbd5e1 !important;
+}
+html.dark .text-\[\#1a1a1a\]\/60 {
+  color: #94a3b8 !important;
+}
+html.dark .text-\[\#1a1a1a\]\/50 {
+  color: #8391a3 !important;
+}
+html.dark .text-\[\#1a1a1a\]\/40 {
+  color: #64748b !important;
+}
+html.dark .meta {
+  color: #8391a3 !important;
+}
+html.dark .meta-dark {
+  color: #f0f6fc !important;
+}
+
+/* Crisp Nocturnal Borders */
+html.dark .border-\[\#1a1a1a\]\/10,
+html.dark .border-\[\#1a1a1a\]\/15,
+html.dark .border-\[\#1a1a1a\]\/20 {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Interactive States & Hovers */
+html.dark .hover\:bg-\[\#1a1a1a\]\/5:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+html.dark .hover\:bg-\[\#f8f7f4\]\/60:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+html.dark .hover\:text-\[\#1a1a1a\]:hover {
+  color: #ffffff !important;
+}
+
+/* Form Inputs & Controls */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #101520 !important;
+  color: #f0f6fc !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* High-Contrast Color Badges in Dark Mode */
+html.dark .bg-emerald-50 {
+  background-color: rgba(5, 150, 105, 0.2) !important;
+}
+html.dark .text-emerald-700,
+html.dark .text-emerald-800,
+html.dark .text-emerald-900 {
+  color: #34d399 !important;
+}
+html.dark .border-emerald-200 {
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+
+html.dark .bg-blue-50 {
+  background-color: rgba(44, 82, 161, 0.25) !important;
+}
+html.dark .text-blue-700,
+html.dark .text-blue-800,
+html.dark .text-blue-900 {
+  color: #60a5fa !important;
+}
+html.dark .border-blue-200 {
+  border-color: rgba(59, 130, 246, 0.35) !important;
+}
+html.dark .text-\[\#2c52a1\] {
+  color: #60a5fa !important;
+}
+
+html.dark .bg-rose-50,
+html.dark .bg-rose-100 {
+  background-color: rgba(225, 29, 72, 0.22) !important;
+}
+html.dark .text-rose-700,
+html.dark .text-rose-800,
+html.dark .text-rose-900 {
+  color: #fb7185 !important;
+}
+html.dark .border-rose-200 {
+  border-color: rgba(244, 63, 94, 0.35) !important;
+}
+
+html.dark .bg-amber-50,
+html.dark .bg-amber-100 {
+  background-color: rgba(245, 158, 11, 0.22) !important;
+}
+html.dark .text-amber-700,
+html.dark .text-amber-800,
+html.dark .text-amber-900 {
+  color: #fbbf24 !important;
+}
+html.dark .border-amber-200,
+html.dark .border-amber-300 {
+  border-color: rgba(245, 158, 11, 0.35) !important;
+}
+
+/* Leaflet Night Navigation Map */
+html.dark .leaflet-container {
+  background: #0b0f17 !important;
+}
+html.dark .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(195deg) brightness(0.85) contrast(1.22) saturate(0.75);
+}
+html.dark .leaflet-popup-content-wrapper {
+  background: #151c28 !important;
+  color: #f0f6fc !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.6) !important;
+}
+html.dark .leaflet-popup-tip {
+  background: #151c28 !important;
+}
+
+/* Recharts Dark Calibration */
+html.dark .recharts-cartesian-grid line {
+  stroke: rgba(255, 255, 255, 0.08) !important;
+}
+html.dark .recharts-cartesian-axis-line {
+  stroke: rgba(255, 255, 255, 0.14) !important;
+}
+html.dark .recharts-text,
+html.dark .recharts-cartesian-axis-tick text {
+  fill: #94a3b8 !important;
+}
+html.dark .recharts-default-tooltip {
+  background-color: #151c28 !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #f0f6fc !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* AMOLED Ultra Dark Mode Override (when batterySaver or theme === 'amoled') */
+html.dark.amoled body,
+html.dark.amoled .bg-\[\#f8f7f4\],
+html.dark.amoled .bg-white {
+  background-color: #000000 !important;
+}
+html.dark.amoled .border-\[\#1a1a1a\]\/10,
+html.dark.amoled .border-\[\#1a1a1a\]\/15,
+html.dark.amoled .border-\[\#1a1a1a\]\/20 {
+  border-color: #222222 !important;
+}
+
 

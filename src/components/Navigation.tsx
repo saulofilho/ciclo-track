@@ -11,7 +11,9 @@ import {
   Settings,
   Bluetooth,
   BatteryCharging,
-  Trophy
+  Trophy,
+  Moon,
+  Sun
 } from 'lucide-react';
 import { HeartRateSensor } from '../types';
 
@@ -31,6 +33,8 @@ interface NavigationProps {
   onOpenBluetoothModal: () => void;
   batterySaver: boolean;
   onToggleBatterySaver: () => void;
+  darkMode: boolean;
+  onToggleDarkMode: () => void;
   onOpenSettings: () => void;
   unlockedAchievementsCount: number;
 }
@@ -42,6 +46,8 @@ export const Navigation: React.FC<NavigationProps> = ({
   onOpenBluetoothModal,
   batterySaver,
   onToggleBatterySaver,
+  darkMode,
+  onToggleDarkMode,
   onOpenSettings,
   unlockedAchievementsCount
 }) => {
@@ -127,7 +133,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             {/* Battery Saver Mode Toggle */}
             <button
               onClick={onToggleBatterySaver}
-              className={`p-2 rounded-full border transition-all ${
+              className={`p-2 rounded-full border transition-all cursor-pointer ${
                 batterySaver
                   ? 'bg-amber-100 text-amber-900 border-amber-300 shadow-sm'
                   : 'bg-white text-[#1a1a1a]/70 border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20'
@@ -137,11 +143,29 @@ export const Navigation: React.FC<NavigationProps> = ({
               <BatteryCharging className="w-3.5 h-3.5" />
             </button>
 
+            {/* Quick Dark Mode Toggle */}
+            <button
+              id="btn-toggle-dark-mode-nav"
+              onClick={onToggleDarkMode}
+              className={`p-2 rounded-full border transition-all cursor-pointer ${
+                darkMode
+                  ? 'bg-blue-900/50 text-cyan-300 border-blue-500/50 shadow-sm'
+                  : 'bg-white text-[#1a1a1a]/70 hover:text-[#1a1a1a] border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20'
+              }`}
+              title={darkMode ? 'Mudar para Modo Claro (Diurno)' : 'Mudar para Modo Noturno (Dark Mode)'}
+            >
+              {darkMode ? (
+                <Moon className="w-3.5 h-3.5 text-cyan-400" />
+              ) : (
+                <Sun className="w-3.5 h-3.5 text-amber-500" />
+              )}
+            </button>
+
             {/* Settings Trigger */}
             <button
               id="btn-open-settings"
               onClick={onOpenSettings}
-              className="p-2 rounded-full bg-white text-[#1a1a1a]/70 hover:text-[#1a1a1a] border border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20 transition-colors"
+              className="p-2 rounded-full bg-white text-[#1a1a1a]/70 hover:text-[#1a1a1a] border border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20 transition-colors cursor-pointer"
               title="Configurações e Perfil"
             >
               <Settings className="w-3.5 h-3.5" />

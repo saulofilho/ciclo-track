@@ -30,6 +30,7 @@ import {
   Activity,
   ArrowUpRight
 } from 'lucide-react';
+import { WorkoutPerformanceCharts } from './WorkoutPerformanceCharts';
 
 interface WorkoutsHistoryProps {
   rides: RideSession[];
@@ -274,6 +275,9 @@ export const WorkoutsHistory: React.FC<WorkoutsHistoryProps> = ({
                 </span>
               </div>
             </div>
+
+            {/* Performance Analytics & Interactive Charts (Recharts) */}
+            <WorkoutPerformanceCharts ride={selectedRide} />
 
             {/* Heart Rate Zones Distribution Bar */}
             {selectedRide.avgHeartRate && (

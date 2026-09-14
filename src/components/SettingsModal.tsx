@@ -12,7 +12,11 @@ import {
   CheckCircle2,
   X,
   ExternalLink,
-  ShieldCheck
+  ShieldCheck,
+  Moon,
+  Sun,
+  Eye,
+  Sparkles
 } from 'lucide-react';
 
 interface SettingsModalProps {
@@ -161,6 +165,75 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         {/* TAB 1: INTERFACE & THEMES */}
         {activeTab === 'interface' && (
           <div className="space-y-4">
+            {/* DARK MODE HIGH CONTRAST TOGGLE */}
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#101520] to-[#1a2333] border border-blue-500/30 text-white space-y-3 shadow-md">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400 shrink-0">
+                    {preferences.darkMode ? (
+                      <Moon className="w-5 h-5 text-cyan-400" />
+                    ) : (
+                      <Sun className="w-5 h-5 text-amber-400" />
+                    )}
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-white block">
+                        Modo Noturno (Dark Mode)
+                      </span>
+                      <span className="text-[9px] font-mono-numbers px-2 py-0.5 rounded-full font-bold uppercase bg-blue-500/30 text-blue-300 border border-blue-400/30">
+                        {preferences.darkMode ? 'Ativado' : 'Desativado'}
+                      </span>
+                    </div>
+                    <span className="text-[11px] text-slate-300 block mt-0.5">
+                      Paleta de alto contraste para pedais noturnos e rotas sob baixa luminosidade.
+                    </span>
+                  </div>
+                </div>
+
+                {/* Switch button */}
+                <button
+                  id="toggle-dark-mode-settings"
+                  type="button"
+                  onClick={() => onUpdatePreferences({ darkMode: !preferences.darkMode })}
+                  className={`w-14 h-8 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 shrink-0 ${
+                    preferences.darkMode ? 'bg-blue-600 justify-end' : 'bg-slate-700 justify-start'
+                  }`}
+                  aria-label="Alternar Modo Noturno"
+                >
+                  <div className="w-6 h-6 rounded-full bg-white shadow-md flex items-center justify-center text-slate-900 transition-transform">
+                    {preferences.darkMode ? (
+                      <Moon className="w-3.5 h-3.5 text-blue-600" />
+                    ) : (
+                      <Sun className="w-3.5 h-3.5 text-amber-500" />
+                    )}
+                  </div>
+                </button>
+              </div>
+
+              {/* Sub-features: OLED Pure Black & Benefits */}
+              <div className="pt-2.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-300">
+                <label className="flex items-center gap-2 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={preferences.theme === 'amoled'}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        onUpdatePreferences({ theme: 'amoled', darkMode: true });
+                      } else {
+                        onUpdatePreferences({ theme: 'stealth' });
+                      }
+                    }}
+                    className="w-3.5 h-3.5 rounded accent-blue-500 cursor-pointer"
+                  />
+                  <span>Preto Absoluto AMOLED (Pixel OFF)</span>
+                </label>
+                <span className="text-[10px] text-blue-300 font-mono-numbers">
+                  ✓ Altera CSS Global, Telas & Mapas
+                </span>
+              </div>
+            </div>
+
             <div>
               <label className="meta text-[10px] text-[#1a1a1a]/60 block mb-2 font-bold">
                 TEMA VISUAL DA INTERFACE:
@@ -169,7 +242,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 {themes.map((th) => (
                   <button
                     key={th.key}
-                    onClick={() => onUpdatePreferences({ theme: th.key })}
+                    onClick={() => {
+                      const willBeDark = th.key === 'amoled' ? true : preferences.darkMode;
+                      onUpdatePreferences({ theme: th.key, darkMode: willBeDark });
+                    }}
                     className={`w-full p-3.5 rounded-2xl border text-left flex items-center justify-between transition-all cursor-pointer ${
                       preferences.theme === th.key
                         ? 'bg-[#f8f7f4] border-[#2c52a1] shadow-xs'

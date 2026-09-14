@@ -92,9 +92,21 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
     const height = container.clientHeight || 450;
 
     // Scene
+    const isDark = document.documentElement.classList.contains('dark');
+    const isAmoled = document.documentElement.classList.contains('amoled');
     const scene = new THREE.Scene();
     sceneRef.current = scene;
-    scene.background = new THREE.Color(0xf5f4f0);
+    scene.background = new THREE.Color(isAmoled ? 0x000000 : isDark ? 0x0b0f17 : 0xf5f4f0);
+
+    // Theme change observer
+    const themeObserver = new MutationObserver(() => {
+      const darkNow = document.documentElement.classList.contains('dark');
+      const amoledNow = document.documentElement.classList.contains('amoled');
+      if (sceneRef.current) {
+        sceneRef.current.background = new THREE.Color(amoledNow ? 0x000000 : darkNow ? 0x0b0f17 : 0xf5f4f0);
+      }
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
     // Camera
     const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
@@ -509,6 +521,7 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('touchend', onTouchEnd);
       window.removeEventListener('resize', handleResize);
+      themeObserver.disconnect();
       renderer.dispose();
     };
   }, [wireframeMode]); // Re-create scene if wireframe changed
