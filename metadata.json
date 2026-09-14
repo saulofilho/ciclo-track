@@ -1,0 +1,10 @@
+{
+  "name": "CicloTrack Pro - GPS, Rotas & Oficina 3D",
+  "description": "Aplicativo completo de ciclismo com rastreamento GPS de rotas, monitor de velocidade e calorias, mapas offline, sensor cardíaco Bluetooth, modelo 3D interativo da bike, manutenção preventiva, pontos de assistência técnica e feed social.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
