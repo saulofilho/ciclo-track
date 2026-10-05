@@ -746,7 +746,7 @@ export const HISTORIC_RIDES: RideSession[] = [
     avgHeartRate: 151,
     maxHeartRate: 178,
     avgCadence: 80,
-    category: 'trilha',
+    category: 'mtb',
     route: SAMPLE_ROUTE_COORDS,
     weather: { temp: 22, condition: 'Ensolarado Seco', windSpeed: 6 },
     notes: 'Terreno misto com cascalho solto. Pneus em 36 PSI deram ótima tração.'

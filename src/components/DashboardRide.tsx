@@ -111,6 +111,16 @@ export const DashboardRide: React.FC<DashboardRideProps> = ({
       const L = (window as any).L;
       if (!L) return;
 
+      // Configure standard Leaflet icon URL paths
+      if (L.Icon && L.Icon.Default) {
+        delete (L.Icon.Default.prototype as any)._getIconUrl;
+        L.Icon.Default.mergeOptions({
+          iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+          iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        });
+      }
+
       const initialCenter = [-23.561684, -46.655981];
 
       // Check if map already exists

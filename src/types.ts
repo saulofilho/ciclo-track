@@ -2,8 +2,8 @@ export interface GPSPoint {
   lat: number;
   lng: number;
   altitude: number; // in meters
-  speed: number; // in km/h
-  timestamp: number;
+  speed?: number; // in km/h
+  timestamp?: number;
   heartRate?: number;
   cadence?: number;
 }
@@ -72,6 +72,7 @@ export interface AssistancePoint {
   hasAirPump: boolean;
   hasWaterPoint: boolean;
   emergencyAvailable: boolean;
+  iconUrl?: string;
 }
 
 export interface BikeBrand {
@@ -83,6 +84,7 @@ export interface BikeBrand {
   description: string;
   popularModels: string[];
   logoUrl?: string;
+  iconUrl?: string;
   website: string;
   specialty: string;
 }

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a78" />
+      <stop offset="50%" stop-color="#2c52a1" />
+      <stop offset="100%" stop-color="#172b54" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#2c52a1" stop-opacity="0.2" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Background Squircle / Circle -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+
+  <!-- Speed & Contour Accent Arc -->
+  <circle cx="256" cy="256" r="216" fill="none" stroke="url(#glowGrad)" stroke-width="4" stroke-dasharray="24 16" opacity="0.6" />
+
+  <!-- Bicycle Graphic -->
+  <g transform="translate(48, 64) scale(0.82)" filter="url(#shadow)">
+    <!-- Back Wheel -->
+    <circle cx="116" cy="336" r="90" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round" />
+    <circle cx="116" cy="336" r="32" fill="none" stroke="#60a5fa" stroke-width="10" />
+    <circle cx="116" cy="336" r="12" fill="#ffffff" />
+
+    <!-- Front Wheel -->
+    <circle cx="392" cy="336" r="90" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round" />
+    <circle cx="392" cy="336" r="32" fill="none" stroke="#60a5fa" stroke-width="10" />
+    <circle cx="392" cy="336" r="12" fill="#ffffff" />
+
+    <!-- Frame Geometry -->
+    <!-- Rear chainstay & seatstay to hub -->
+    <line x1="116" y1="336" x2="236" y2="336" stroke="#ffffff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="116" y1="336" x2="204" y2="186" stroke="#ffffff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Seat tube -->
+    <line x1="236" y1="336" x2="204" y2="186" stroke="#ffffff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Down tube -->
+    <line x1="236" y1="336" x2="336" y2="186" stroke="#ffffff" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Top tube -->
+    <line x1="204" y1="186" x2="336" y2="186" stroke="#ffffff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Front fork -->
+    <line x1="336" y1="186" x2="392" y2="336" stroke="#60a5fa" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Seat post & Saddle -->
+    <line x1="204" y1="186" x2="194" y2="140" stroke="#ffffff" stroke-width="18" stroke-linecap="round" />
+    <path d="M 160 140 Q 196 130 240 144 Q 220 156 160 140 Z" fill="#60a5fa" />
+
+    <!-- Stem & Drop Handlebars -->
+    <line x1="336" y1="186" x2="350" y2="136" stroke="#ffffff" stroke-width="18" stroke-linecap="round" />
+    <path d="M 340 136 Q 370 130 380 154 Q 388 174 366 182" fill="none" stroke="#60a5fa" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Bottom Bracket Chainring -->
+    <circle cx="236" cy="336" r="28" fill="#1e3a78" stroke="#60a5fa" stroke-width="8" />
+    <!-- Pedals / Cranks -->
+    <line x1="236" y1="336" x2="260" y2="380" stroke="#ffffff" stroke-width="12" stroke-linecap="round" />
+    <line x1="250" y1="380" x2="276" y2="380" stroke="#60a5fa" stroke-width="10" stroke-linecap="round" />
+  </g>
+
+  <!-- GPS Wave Pulse Badge at Top Right -->
+  <g transform="translate(360, 60)">
+    <circle cx="40" cy="40" r="32" fill="#22c55e" filter="url(#shadow)" />
+    <!-- Location Pin / Signal Icon in Badge -->
+    <path d="M 40 22 C 30 22 22 30 22 40 C 22 53 40 68 40 68 C 40 68 58 53 58 40 C 58 30 50 22 40 22 Z M 40 45 C 37 45 35 43 35 40 C 35 37 37 35 40 35 C 43 35 45 37 45 40 C 45 43 43 45 40 45 Z" fill="#ffffff" />
+  </g>
+</svg>
