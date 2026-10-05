@@ -22,7 +22,8 @@ import {
   Crosshair,
   UserCheck,
   Sparkles,
-  Trophy
+  Trophy,
+  Target
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import {
@@ -529,6 +530,16 @@ export const DashboardRide: React.FC<DashboardRideProps> = ({
             <BatteryCharging className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">BATERIA</span>
           </button>
+
+          {/* Quick link to Weekly Goals */}
+          <a
+            href="#weekly-goals-section"
+            className="meta px-3 py-1.5 rounded-full border flex items-center gap-1.5 transition-all bg-transparent text-[#1a1a1a]/60 border-[#1a1a1a]/15 hover:text-[#2c52a1] hover:border-[#2c52a1]/30 cursor-pointer"
+            title="Ver Metas Semanais de Distância e Tempo"
+          >
+            <Target className="w-3.5 h-3.5 text-[#2c52a1]" />
+            <span className="hidden md:inline">METAS</span>
+          </a>
 
           {/* Sound Mute */}
           <button

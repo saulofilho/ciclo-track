@@ -156,6 +156,11 @@ export interface LiveChallenge {
 
 export type AppTheme = 'stealth' | 'neon' | 'forest' | 'sunset' | 'amoled';
 
+export interface WeeklyGoal {
+  targetDistanceKm: number; // in kilometers (e.g. 100)
+  targetTimeHours: number; // in hours (e.g. 5.5)
+}
+
 export interface UserPreferences {
   theme: AppTheme;
   darkMode: boolean;
@@ -174,4 +179,5 @@ export interface UserPreferences {
     polar: boolean;
   };
   offlineMapDownloaded: boolean;
+  weeklyGoal?: WeeklyGoal;
 }

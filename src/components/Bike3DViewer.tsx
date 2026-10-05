@@ -11,7 +11,8 @@ import {
   CheckCircle2,
   Sparkles,
   Layers,
-  Palette
+  Palette,
+  Cog
 } from 'lucide-react';
 
 interface Bike3DViewerProps {
@@ -591,6 +592,19 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
           </button>
 
           <button
+            id="btn-scroll-gear-calc"
+            onClick={() => {
+              const calcEl = document.getElementById('gear-cadence-calculator-section');
+              if (calcEl) calcEl.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="px-3 py-1.5 rounded-full text-xs font-mono-numbers transition-all flex items-center gap-1.5 border bg-white text-[#1a1a1a]/70 border-[#1a1a1a]/10 hover:border-[#2c52a1]/40 hover:text-[#2c52a1] cursor-pointer"
+            title="Calculadora de Marchas & Cadência"
+          >
+            <Cog className="w-3.5 h-3.5 text-[#2c52a1]" />
+            <span className="meta-dark hidden sm:inline">MARCHAS & CADÊNCIA</span>
+          </button>
+
+          <button
             id="btn-reset-view"
             onClick={resetView}
             className="p-2 rounded-full text-xs bg-white text-[#1a1a1a]/70 border border-[#1a1a1a]/10 hover:border-[#1a1a1a]/20 transition-colors"
@@ -701,6 +715,21 @@ export const Bike3DViewer: React.FC<Bike3DViewerProps> = ({
                   {currentCompData.currentKm} KM / {currentCompData.maxRecommendedKm} KM
                 </span>
               </div>
+              {selectedPartKey === 'chain' && (
+                <button
+                  id="btn-simulate-gears"
+                  onClick={() => {
+                    const calcSection = document.getElementById('gear-cadence-calculator-section');
+                    if (calcSection) {
+                      calcSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="px-4 py-2 rounded-full bg-[#f8f7f4] hover:bg-[#1a1a1a]/5 text-[#2c52a1] border border-[#2c52a1]/30 font-mono-numbers text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer uppercase tracking-wider"
+                >
+                  <Cog className="w-3.5 h-3.5" />
+                  Calcular Relação
+                </button>
+              )}
               <button
                 id="btn-inspect-part-service"
                 onClick={() => {

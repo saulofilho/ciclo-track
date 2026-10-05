@@ -35,6 +35,8 @@ import { BluetoothSensorModal } from './components/BluetoothSensorModal';
 import { OfflineMapModal } from './components/OfflineMapModal';
 import { ShareCardModal } from './components/ShareCardModal';
 import { SettingsModal } from './components/SettingsModal';
+import { WeeklyGoalsCard } from './components/WeeklyGoalsCard';
+import { GearCadenceCalculator } from './components/GearCadenceCalculator';
 import confetti from 'canvas-confetti';
 
 export default function App() {
@@ -253,6 +255,12 @@ export default function App() {
               activeChallenge={activeChallenge}
             />
 
+            {/* Weekly Goals Section */}
+            <WeeklyGoalsCard
+              rides={rides}
+              batterySaver={preferences.batterySaver}
+            />
+
             {/* Quick Link Cards - Variation 3 Aesthetic */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div
@@ -307,6 +315,8 @@ export default function App() {
                 if (careEl) careEl.scrollIntoView({ behavior: 'smooth' });
               }}
             />
+            {/* Gear & Cadence Calculator Tool */}
+            <GearCadenceCalculator />
             <BikeCare
               components={components}
               onResetKm={handleResetComponentKm}

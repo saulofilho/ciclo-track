@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   RideSession
 } from '../types';
@@ -28,9 +28,13 @@ import {
   ChevronRight,
   TrendingUp,
   Activity,
-  ArrowUpRight
+  ArrowUpRight,
+  Filter,
+  X,
+  CalendarDays
 } from 'lucide-react';
 import { WorkoutPerformanceCharts } from './WorkoutPerformanceCharts';
+import { WorkoutsCalendar } from './WorkoutsCalendar';
 
 interface WorkoutsHistoryProps {
   rides: RideSession[];
@@ -41,13 +45,108 @@ export const WorkoutsHistory: React.FC<WorkoutsHistoryProps> = ({
   rides,
   onOpenShareModal
 }) => {
+  // Annual Filter State
+  const [selectedYear, setSelectedYear] = useState<string>('all');
+  // Calendar month viewport state
+  const [currentMonthDate, setCurrentMonthDate] = useState<Date>(() => new Date(2026, 8, 1)); // September 2026 default based on data
+  // Specific day filter (when clicked in calendar)
+  const [selectedDayFilter, setSelectedDayFilter] = useState<string | null>(null);
+
+  // Helper to extract year from ride
+  const getRideYear = (ride: RideSession): string => {
+    if (ride.startTime && !isNaN(ride.startTime)) {
+      return String(new Date(ride.startTime).getFullYear());
+    }
+    if (ride.date) {
+      const parts = ride.date.split('/');
+      if (parts.length === 3) return parts[2];
+    }
+    return '2026';
+  };
+
+  // Helper to format ride to YYYY-MM-DD
+  const getRideDayKey = (ride: RideSession): string => {
+    if (ride.startTime && !isNaN(ride.startTime)) {
+      const d = new Date(ride.startTime);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+    if (ride.date) {
+      const parts = ride.date.split('/');
+      if (parts.length === 3) {
+        return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+      }
+    }
+    return '';
+  };
+
+  // List of distinct years available in data
+  const availableYears = useMemo(() => {
+    const years = new Set<string>();
+    rides.forEach((r) => years.add(getRideYear(r)));
+    return Array.from(years).sort((a, b) => b.localeCompare(a));
+  }, [rides]);
+
+  // Filtered rides according to Year and Day filters
+  const filteredRides = useMemo(() => {
+    return rides.filter((ride) => {
+      // Annual filter
+      if (selectedYear !== 'all') {
+        const rideYear = getRideYear(ride);
+        if (rideYear !== selectedYear) return false;
+      }
+      // Day filter
+      if (selectedDayFilter) {
+        const rideDay = getRideDayKey(ride);
+        if (rideDay !== selectedDayFilter) return false;
+      }
+      return true;
+    });
+  }, [rides, selectedYear, selectedDayFilter]);
+
   const [selectedRide, setSelectedRide] = useState<RideSession | null>(rides[0] || null);
 
-  // Totals for header summary
-  const totalKm = rides.reduce((acc, r) => acc + r.distance, 0);
-  const totalHours = Math.round(rides.reduce((acc, r) => acc + r.duration, 0) / 3600);
-  const totalCalories = rides.reduce((acc, r) => acc + r.calories, 0);
-  const totalElevation = rides.reduce((acc, r) => acc + r.elevationGain, 0);
+  // Auto-sync selectedRide if current selection is filtered out
+  React.useEffect(() => {
+    if (filteredRides.length > 0) {
+      if (!selectedRide || !filteredRides.some((r) => r.id === selectedRide.id)) {
+        setSelectedRide(filteredRides[0]);
+      }
+    } else {
+      setSelectedRide(null);
+    }
+  }, [filteredRides, selectedRide]);
+
+  // Calendar month navigation handlers
+  const handlePrevMonth = () => {
+    setCurrentMonthDate((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+  };
+
+  const handleNextMonth = () => {
+    setCurrentMonthDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+  };
+
+  const handleGoToCurrentMonth = () => {
+    const now = new Date();
+    setCurrentMonthDate(new Date(now.getFullYear(), now.getMonth(), 1));
+  };
+
+  // When changing year from the filter, also align calendar month if applicable
+  const handleChangeYear = (year: string) => {
+    setSelectedYear(year);
+    setSelectedDayFilter(null);
+    if (year !== 'all') {
+      const parsedYear = parseInt(year, 10);
+      if (!isNaN(parsedYear)) {
+        setCurrentMonthDate((prev) => new Date(parsedYear, prev.getMonth(), 1));
+      }
+    }
+  };
+
+  // Totals for filtered summary banner
+  const totalKm = filteredRides.reduce((acc, r) => acc + r.distance, 0);
+  const totalHours = Math.round(filteredRides.reduce((acc, r) => acc + r.duration, 0) / 3600);
+  const totalCalories = filteredRides.reduce((acc, r) => acc + r.calories, 0);
+  const totalElevation = filteredRides.reduce((acc, r) => acc + r.elevationGain, 0);
 
   // Performance Report Analytics
   const calculateTSS = (ride: RideSession) => {
@@ -71,10 +170,33 @@ export const WorkoutsHistory: React.FC<WorkoutsHistoryProps> = ({
 
   return (
     <div id="workouts-history-section" className="space-y-6">
+      {/* Calendar View Component: Highlights workout days & enables annual periods */}
+      <WorkoutsCalendar
+        rides={rides}
+        selectedRide={selectedRide}
+        onSelectRide={(r) => setSelectedRide(r)}
+        selectedYear={selectedYear}
+        onChangeYear={handleChangeYear}
+        availableYears={availableYears}
+        currentMonthDate={currentMonthDate}
+        onPrevMonth={handlePrevMonth}
+        onNextMonth={handleNextMonth}
+        onGoToCurrentMonth={handleGoToCurrentMonth}
+        selectedDayFilter={selectedDayFilter}
+        onSelectDayFilter={(day) => setSelectedDayFilter(day)}
+      />
+
       {/* Historic Totals Banner - Variation 3 Space Mono & Editorial Neutral */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div className="bg-white border border-[#1a1a1a]/10 p-5 rounded-3xl shadow-xs">
-          <span className="meta text-[#1a1a1a]/60 block mb-1">DISTÂNCIA TOTAL</span>
+          <div className="flex items-center justify-between mb-1">
+            <span className="meta text-[#1a1a1a]/60">DISTÂNCIA TOTAL</span>
+            {selectedYear !== 'all' && (
+              <span className="meta text-[10px] text-[#2c52a1] font-bold font-mono-numbers">
+                {selectedYear}
+              </span>
+            )}
+          </div>
           <span className="font-mono-numbers text-2xl sm:text-3xl font-bold text-[#1a1a1a]">
             {totalKm.toFixed(1)} <span className="text-xs text-[#1a1a1a]/60 font-sans">km</span>
           </span>
@@ -106,18 +228,59 @@ export const WorkoutsHistory: React.FC<WorkoutsHistoryProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left List of Rides (5 cols) */}
         <div className="lg:col-span-5 space-y-3">
-          <h4 className="meta text-[#1a1a1a]/70 flex items-center justify-between pb-1">
-            <span>HISTÓRICO GRAVADO ({rides.length})</span>
-            <span className="text-[#2c52a1] font-bold">ORDEM CRONOLÓGICA</span>
-          </h4>
+          <div className="flex items-center justify-between pb-1">
+            <h4 className="meta text-[#1a1a1a]/70 flex items-center gap-1.5">
+              <CalendarDays className="w-3.5 h-3.5 text-[#2c52a1]" />
+              <span>
+                ATIVIDADES ({filteredRides.length}
+                {filteredRides.length !== rides.length ? ` de ${rides.length}` : ''})
+              </span>
+            </h4>
+            <div className="flex items-center gap-2">
+              {(selectedYear !== 'all' || selectedDayFilter) && (
+                <button
+                  id="btn-clear-all-history-filters"
+                  onClick={() => {
+                    setSelectedYear('all');
+                    setSelectedDayFilter(null);
+                  }}
+                  className="text-[11px] font-mono-numbers font-bold text-[#2c52a1] hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  <X className="w-3 h-3" />
+                  Limpar Filtros
+                </button>
+              )}
+              <span className="text-[#2c52a1] font-bold text-xs font-mono-numbers hidden sm:inline">
+                CRONOLÓGICO
+              </span>
+            </div>
+          </div>
 
           <div className="space-y-3 max-h-[680px] overflow-y-auto pr-1">
-            {rides.map((ride) => {
-              const isSelected = selectedRide?.id === ride.id;
-              return (
-                <div
-                  key={ride.id}
-                  onClick={() => setSelectedRide(ride)}
+            {filteredRides.length === 0 ? (
+              <div className="p-8 text-center bg-white border border-[#1a1a1a]/10 rounded-2xl space-y-2">
+                <Calendar className="w-8 h-8 mx-auto text-[#1a1a1a]/30" />
+                <p className="text-sm font-bold text-[#1a1a1a]">Nenhum treino gravado neste filtro</p>
+                <p className="text-xs text-[#1a1a1a]/60">
+                  Experimente selecionar "Todos" os anos ou limpar o filtro do dia.
+                </p>
+                <button
+                  onClick={() => {
+                    setSelectedYear('all');
+                    setSelectedDayFilter(null);
+                  }}
+                  className="mt-2 px-3 py-1.5 rounded-full bg-[#2c52a1] text-white text-xs font-bold uppercase tracking-wider cursor-pointer"
+                >
+                  Ver Todos os Treinos
+                </button>
+              </div>
+            ) : (
+              filteredRides.map((ride) => {
+                const isSelected = selectedRide?.id === ride.id;
+                return (
+                  <div
+                    key={ride.id}
+                    onClick={() => setSelectedRide(ride)}
                   className={`p-5 rounded-2xl border transition-all cursor-pointer ${
                     isSelected
                       ? 'bg-white border-[#2c52a1] shadow-md ring-1 ring-[#2c52a1]'
@@ -164,7 +327,8 @@ export const WorkoutsHistory: React.FC<WorkoutsHistoryProps> = ({
                   </div>
                 </div>
               );
-            })}
+            })
+            )}
           </div>
         </div>
 

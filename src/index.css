@@ -259,6 +259,11 @@ html.dark .border-amber-300 {
   border-color: rgba(245, 158, 11, 0.35) !important;
 }
 
+/* Progress bar background track in dark mode */
+html.dark .bg-\[\#1a1a1a\]\/8 {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
 /* Leaflet Night Navigation Map */
 html.dark .leaflet-container {
   background: #0b0f17 !important;
